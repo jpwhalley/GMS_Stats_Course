@@ -9,4 +9,5 @@ Suggested Software
 Timetable
 ---------
 28/10/2019 - Introduction to Statistics Day 1 (JPW) - Room A
+
 29/10/2019 - Introduction to Statistics Day 2 (JPW) - CCMP2
