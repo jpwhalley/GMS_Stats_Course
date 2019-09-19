@@ -8,7 +8,7 @@ Teachers please put your course data in the relevant folder:
 /2_Statistical_Modelling
 /3_Introduction_Bayesian_Modelling
 /4_Statistical_Analysis_of_Genome-wide_data
-/5_Machine_Learning_Application
+/5_Machine_Learning_Applications
 ```
 
 Suggested Software
@@ -32,7 +32,7 @@ Timetable
 
 28/11/2019 - Statistical Analysis of Genome-wide data (AM) - Room B
 
-03/12/2019 - Machine Learning Application (TBC) - Room B
+03/12/2019 - Machine Learning Applications (TBC) - Room B
 
-05/12/2019 - Machine Learning Application (TBC) - Room B
+05/12/2019 - Machine Learning Applications (TBC) - Room B
 
