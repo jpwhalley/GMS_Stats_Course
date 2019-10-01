@@ -14,8 +14,9 @@ Learning objectives
 - Understand 2x2 tables and logistic regression.
 - Understand the asymptotic behaviour of likelihoods and how summary statistics can be used to approximate inference.
 - Know how to use computational approaches to deal with cases where the asymptotics don't work.
-- Understand the concepts of estimation and hypothesis testing in the context of statistical modelling.
-- Be able to implement some simple models in R.
+- Understand the concepts of estimation and hypothesis testing.
+- Understand situations where prior distributions are needed and useful, and what effect they have.
+- Implement some simple models in R.
 
 Suggested Software
 ----------------------
