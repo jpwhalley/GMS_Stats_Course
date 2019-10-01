@@ -9,7 +9,7 @@ Prerequisites
 Learning objectives
 -------------------
 
-- An overall understanding of the aims and practice of statistical inference through models.
+- An overall understanding of the aims and practice of statistical inference through basic modelling.
 - Know what the formal components of models are - the likelihood, the prior, the posterior, etc.
 - Understand 2x2 tables and logistic regression.
 - Understand the asymptotic behaviour of likelihoods and how summary statistics can be used to approximate inference.
