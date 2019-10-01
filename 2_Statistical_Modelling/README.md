@@ -9,13 +9,13 @@ Prerequisites
 Learning objectives
 -------------------
 
-- An overall understanding of the aims and practice of statistical inference.
-- Know what the formal components of likelihood-based models are - the likelihood, the prior, and the posterior.
+- An overall understanding of the aims and practice of statistical inference through models.
+- Know what the formal components of models are - the likelihood, the prior, the posterior, etc.
 - Understand 2x2 tables and logistic regression.
-- Understand the asymptotic behaviour of likelihoods and how summary statistics can be used to perform (approximate) inference.
+- Understand the asymptotic behaviour of likelihoods and how summary statistics can be used to approximate inference.
 - Know how to use computational approaches to deal with cases where the asymptotics don't work.
-- Understand the ideas of estimation and hypothesis testing in the context of statistical modelling.
-- Be able to implement some simple models.
+- Understand the concepts of estimation and hypothesis testing in the context of statistical modelling.
+- Be able to implement some simple models in R.
 
 Suggested Software
 ----------------------
