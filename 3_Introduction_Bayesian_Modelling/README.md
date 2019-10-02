@@ -46,5 +46,6 @@ R 3.6 and R studio 1.2
 Timetable
 ---------
 4 November 9:30-12:00
+
 5 November 9:30-16:00
 
