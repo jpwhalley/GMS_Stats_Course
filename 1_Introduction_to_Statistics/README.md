@@ -1,6 +1,10 @@
 GMS Introduction to Statistics
 ==============================
 
+Prerequisites
+-------------
+None
+
 Suggested Software
 ----------------------
 1. [Anaconda3 (for python3 notebooks)](https://www.anaconda.com/download/) with the following packages:
@@ -14,9 +18,9 @@ Suggested Software
 Blocks
 --------
 1. Tests of significance and correlations
-2. Dealing with uncertainty from raw experimental data
-3. Big data sets and dimension reduction methods
-4. Multiple testing and power calculations
+2. Dealing with uncertainty from raw experimental data and linear regression
+3. Big data sets and dimension reduction methods, multiple testing and power calculations
+4. Logistic regression
 
 Timetable
 ---------
