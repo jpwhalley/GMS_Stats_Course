@@ -3,7 +3,7 @@ GMS Introduction to Statistics
 
 Prerequisites
 -------------
-None
+Try to install the suggested software:
 
 Suggested Software
 ----------------------
@@ -23,7 +23,6 @@ Blocks
 1. Tests of significance and correlations
 2. Dealing with uncertainty from raw experimental data and linear regression
 3. Big data sets and dimension reduction methods, multiple testing and power calculations
-4. Logistic regression
 
 Timetable
 ---------
@@ -31,7 +30,7 @@ Timetable
 |---------------|--------------|--------------|
 | 09:30 - 12:00 | Block 1      | Block 3      |
 | 12:00 - 13:30 | Lunch Break  |              |
-| 13:30 - 16:00 | Block 3      | Block 4      |
+| 13:30 - 16:00 | Block 2      |     	      |
 
 Online Resources
 ----------------
