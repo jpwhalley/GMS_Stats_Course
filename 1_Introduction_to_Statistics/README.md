@@ -11,9 +11,12 @@ Suggested Software
 	* adjusttext - can install using `pip install adjusttext`
 2. [R](https://www.r-project.org/) with the following packages:
 	* FactoMineR - `install.packages("FactoMineR")` and factoextra - `install.packages("factoextra")`
-	* XGR - `install.packages("XGR")`
 	* pwr - `install.packages("pwr")`
-3. Any spreadsheet software (optional)
+	* XGR -
+```
+if(!("BiocManager" %in% rownames(installed.packages()))) install.packages("BiocManager")
+BiocManager::install("XGR", dependencies=T)
+```
 
 Blocks
 --------
