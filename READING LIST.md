@@ -21,9 +21,9 @@ reads that complement the statistics training, this is a great place to start.
 
 "*Bayesian Data Analysis*" by Gelman, Carlin, Stern, Dunson, Vehtari, and Rubin.
 
-"*Information Theory, Inference, and Learning Algorithms*" by David MacKay.
+"*Information Theory, Inference, and Learning Algorithms*" by David MacKay - a great of topics covered in a readable way, including an information-theoretic view of statistics, distributions, sampling algorithms like MCMC, Laplace method, ... 
 
-"*Probability Theory*" by Edwin Jaynes.  A highly readable (if opinionated) view of the conceptual basis of statistical inference.
+"*Probability Theory*" by Edwin Jaynes - A highly readable (if opinionated) view of the conceptual basis of statistical inference.
 
 ## Recent articles
 
