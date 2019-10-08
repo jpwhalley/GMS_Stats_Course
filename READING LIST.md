@@ -17,13 +17,13 @@ reads that complement the statistics training, this is a great place to start.
 
 ## Books
 
-"*Computer Age Statistical Inference*", by Bradley Efron and Trevor Hastie.  This is [freely available](http://web.stanford.edu/~hastie/CASI/) online and covers many topics of relevance
-
-"*Probability Theory*" by Edwin Jaynes.  A highly readable (and highly opinionated) story telling why we do statistics as we do.
+"*Computer Age Statistical Inference*", by Bradley Efron and Trevor Hastie.  This is [freely available](http://web.stanford.edu/~hastie/CASI/) online and covers many topics of relevance to modern statistics.
 
 "*Bayesian Data Analysis*" by Gelman, Carlin, Stern, Dunson, Vehtari, and Rubin.
 
 "*Information Theory, Inference, and Learning Algorithms*" by David MacKay.
+
+"*Probability Theory*" by Edwin Jaynes.  A highly readable (if opinionated) view of the conceptual basis of statistical inference.
 
 ## Recent articles
 
