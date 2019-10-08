@@ -1,11 +1,12 @@
 # Recommended reading for the GMS Statistics Course
 
+    “Read the best books first, or you may not have a chance to read them at all.”
+    – Henry David Thoreau
+
     “Never trust anyone who has not brought a book with them.”
     – Lemony Snicket
 
 
-    "Read the best books first, or you may not have a chance to read them at all."
-    – Henry David Thoreau
 
 This document lists books and articles relevant to the material covered in the GMS statistics course.
 None of this material is *required reading* for our course, but if you're looking for thoroughly good
