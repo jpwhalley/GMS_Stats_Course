@@ -1,10 +1,11 @@
 # Recommended reading for the GMS Statistics Course
 
+    “Never trust anyone who has not brought a book with them.”
+    – Lemony Snicket
+
     “Read the best books first, or you may not have a chance to read them at all.”
     – Henry David Thoreau
 
-    “Never trust anyone who has not brought a book with them.”
-    – Lemony Snicket
 
 
 
