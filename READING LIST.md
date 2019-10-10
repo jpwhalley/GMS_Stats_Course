@@ -29,8 +29,5 @@ reads that complement the statistics training, this is a great place to start.
 
 ## Articles
 
-Rabiner, ["A tutorial on Hidden Markov Models"](https://www.ece.ucsb.edu/Faculty/Rabiner/ece259/Reprints/tutorial%20on%20hmm%20and%20applications.pdf) - introductory tutorial on HMMs.
+Li and Stephens, "*Modeling linkage disequilibrium and identifying recombination hotspots using single-nucleotide polymorphism data*", https://www.ncbi.nlm.nih.gov/pubmed/14704198".  
 
-Li and Stephens, "*Modeling linkage disequilibrium and identifying recombination hotspots using single-nucleotide polymorphism data*", https://www.ncbi.nlm.nih.gov/pubmed/14704198".  Seminal paper on the 'Li and Stephens' model, which underpins a great deal of modern inference methods, including statistical phasing and imputation, and ancestry inference.  For example, see the two recent ancestry inference methods by WHG / BDI authors [here](https://doi.org/10.1038/s41588-019-0484-x) and [here](https://doi.org/10.1101/458067)
-
-[teachers - any articles to put here?]
