@@ -30,13 +30,18 @@ Timetable
 
 05/11/2019 - Introduction to Genome-wide association studies (NR and TF) - Room B
 
-15/11/2019 - Statistical modelling II - Introduction to Bayesian Modelling (AP) - Room B
+15/11/2019 - Statistical modelling II - sampling (AA) - Room B
 
-27/11/2019 - Statistical Analysis of Genome-wide data (AM) - Room B
+27/11/2019 - Statistical Analysis of Genome-wide data (DC) - Room B
 
-28/11/2019 - Statistical Analysis of Genome-wide data (AM) - Room B
+28/11/2019 - Statistical Analysis of Genome-wide data (DC) - Room B
 
-03/12/2019 - Machine Learning Applications (TBC) - Room B
+03/12/2019 - Machine Learning Applications (GL) - Room B
 
-05/12/2019 - Machine Learning Applications (TBC) - Room B
+05/12/2019 - Machine Learning Applications (GL) - Room B
+
+06/12/2019 (morning) - Statistical Modelling III - Hidden Markov Models (VI) - Room B
+
+06/12/2019 (afternoon) - Wrap-up session - Room B
+
 
