@@ -31,6 +31,6 @@ reads that complement the statistics training, this is a great place to start.
 
 ## Articles
 
-Li and Stephens, "*Modeling linkage disequilibrium and identifying recombination hotspots using single-nucleotide polymorphism data*", https://www.ncbi.nlm.nih.gov/pubmed/14704198.  
+Li and Stephens, "*Modeling linkage disequilibrium and identifying recombination hotspots using single-nucleotide polymorphism data*", Genetics (2003) https://www.ncbi.nlm.nih.gov/pubmed/14704198.  
 
 Yang et al, "*Common SNPs explain a large proportion of the heritability for human height*", Nature Genetics (2010), https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3232052.
