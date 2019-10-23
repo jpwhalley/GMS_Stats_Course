@@ -21,7 +21,7 @@ Some courses will also require specific packages or other software.
 Mailing list
 ------------
 
-For questions on the course, help with installing needed software, or stats questions in general, please email:
+For questions on the course content, help with installing needed software, or stats questions in general, please email:
 
 gms-stats@well.ox.ac.uk
 
