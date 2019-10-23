@@ -27,8 +27,8 @@ gms-stats@well.ox.ac.uk
 
 Emails to this address get sent to all the students and all the teachers on the GMS Statistics course, and we'll do our best to answer.
 
-Timetable
----------
+Course Timetable 2019
+---------------------
 
 | When | What | Who | Where |
 | ---- | ---- | --- | ----- |
