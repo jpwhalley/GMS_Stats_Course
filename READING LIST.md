@@ -23,11 +23,14 @@ reads that complement the statistics training, this is a great place to start.
 
 "*Bayesian Data Analysis*" by Gelman, Carlin, Stern, Dunson, Vehtari, and Rubin - seminal book for Bayesian analysts.
 
-"*Information Theory, Inference, and Learning Algorithms*" by David MacKay - a range of topics covered in a readable way, including an information-theoretic view of statistics, distributions, sampling algorithms like MCMC, Laplace method, ... 
+"*Information Theory, Inference, and Learning Algorithms*" by David MacKay - a range of topics covered in a readable way, including the information-theoretic view of statistics, distributions, sampling algorithms like MCMC, Laplace method, ... 
 
-"*Probability Theory: The Logic of Science*" by Edwin Jaynes - A highly readable (if opinionated) view of the meaning of reasoning.  The first chapter is [here](https://bayes.wustl.edu/etj/prob/book.pdf).
+"*Probability Theory: The Logic of Science*" by Edwin Jaynes - A highly readable (if opinionated) view of the meaning of inference.  The first chapter is [here](https://bayes.wustl.edu/etj/prob/book.pdf).
+
+"*Statistical Rethinking*" by Richard McElreath - I haven't read this but have heard good things - sample chapters and other material are available [here](https://xcelab.net/rm/statistical-rethinking/)
 
 ## Articles
 
-Li and Stephens, "*Modeling linkage disequilibrium and identifying recombination hotspots using single-nucleotide polymorphism data*", https://www.ncbi.nlm.nih.gov/pubmed/14704198".  
+Li and Stephens, "*Modeling linkage disequilibrium and identifying recombination hotspots using single-nucleotide polymorphism data*", https://www.ncbi.nlm.nih.gov/pubmed/14704198.  
 
+Yang et al, "*Common SNPs explain a large proportion of the heritability for human height*", Nature Genetics (2010), https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3232052.
