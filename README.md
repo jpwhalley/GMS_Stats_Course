@@ -20,13 +20,17 @@ Timetable
 ---------
 28/10/2019 - Introduction to Statistics Day 1 (JPW) - Room A
 
-29/10/2019 - Introduction to Statistics Day 2 (JPW) - CCMP2
+29/10/2019 (morning) - Introduction to Statistics Day 2 (JPW) - CCMP2
 
-04/11/2019 - Statistical Modelling (GB) - Room B
+29/10/2019 (afternoon) - Statistical Modelling I (GB) - CCMP2
 
-05/11/2019 - Statistical Modelling (AP) - Room B
+04/11/2019 (morning) - Introduction to Bayesian Analysis (AP) - Room B
 
-12/11/2019 - Introduction to Bayesian Modelling (AP) - Room B
+04/11/2019 (afternoon) - Statistical Modelling I (GB) - Room B
+
+05/11/2019 - Introduction to Genome-wide association studies (NR and TF) - Room B
+
+15/11/2019 - Statistical modelling II - Introduction to Bayesian Modelling (AP) - Room B
 
 27/11/2019 - Statistical Analysis of Genome-wide data (AM) - Room B
 
