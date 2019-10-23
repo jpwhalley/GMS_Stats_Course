@@ -1,7 +1,7 @@
 # GMS Statistics Programme 2019
 Content for the GMS Statistics Course
 
-Teachers please put your course data in the relevant folder:
+Content for each section of the course is in the relevant folder:
 
 ```
 1_Introduction_to_Statistics
