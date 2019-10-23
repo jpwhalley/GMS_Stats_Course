@@ -11,9 +11,7 @@
 
 This document lists books and articles relevant to the material covered in the GMS statistics course.
 None of this material is required reading for our course, but if you're looking for thoroughly good
-reads that complement the statistics training, this is a great place to start.
-
-(Individual teachers may of course ask you to read specific things).
+reads that complement the statistics training, this is a great place to start.  (Teachers may of course ask you to read specific things).
 
 ## Books
 
