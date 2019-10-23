@@ -21,7 +21,7 @@ reads that complement the statistics training, this is a great place to start.  
 
 "*Bayesian Data Analysis*" by Gelman, Carlin, Stern, Dunson, Vehtari, and Rubin - seminal book for Bayesian analysts.
 
-"*Information Theory, Inference, and Learning Algorithms*" by David MacKay - a range of topics covered in a readable way, including the information-theoretic view of statistics, distributions, sampling algorithms like MCMC, Laplace method, ... 
+"*Information Theory, Inference, and Learning Algorithms*" by David MacKay - a range of topics covered in a readable way, including the information-theoretic view of statistics, distributions, MCMC and Gibbs sampling, Laplace method, ... 
 
 "*Probability Theory: The Logic of Science*" by Edwin Jaynes - A highly readable (if opinionated) view of the meaning of inference.  The first chapter is [here](https://bayes.wustl.edu/etj/prob/book.pdf).
 
