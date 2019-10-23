@@ -23,7 +23,7 @@ reads that complement the statistics training, this is a great place to start.  
 
 "*Information Theory, Inference, and Learning Algorithms*" by David MacKay - a range of topics covered in a readable way. Includes the information-theoretic view of statistics, distributions, MCMC and Gibbs sampling, Laplace method, ... 
 
-"*Probability Theory: The Logic of Science*" by Edwin Jaynes - A highly readable (if opinionated) view of the meaning of inference.  The first chapter is [here](https://bayes.wustl.edu/etj/prob/book.pdf).
+"*Probability Theory: The Logic of Science*" by Edwin Jaynes - A highly readable (if opinionated) conceptual view of statistical inference.  The first chapter is [here](https://bayes.wustl.edu/etj/prob/book.pdf).
 
 "*Statistical Rethinking*" by Richard McElreath - I haven't read this but have heard good things - sample chapters and other material are available [here](https://xcelab.net/rm/statistical-rethinking/)
 
