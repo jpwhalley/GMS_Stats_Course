@@ -1,4 +1,4 @@
-# GMS_Stats_Course
+# GMS Statistics Programme 2019
 Content for the GMS Statistics Course
 
 Teachers please put your course data in the relevant folder:
