@@ -11,10 +11,8 @@ Teachers please put your course data in the relevant folder:
 5_Machine_Learning_Applications
 ```
 
-Students please read the prerequisites in each folder before each section of the course. In particular please try to install any computing requirements.
+Students please read the prerequisites in each folder before each section of the course. In particular please try to install any computing requirements.  At a minimum you are likely to need:
 
-Suggested Software
-----------------------
 1. [Anaconda3 (for python3 notebooks)](https://www.anaconda.com/download/)
 2. [RStudio](https://www.rstudio.com/)
 
