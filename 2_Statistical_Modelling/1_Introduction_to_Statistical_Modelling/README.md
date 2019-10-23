@@ -5,7 +5,7 @@ Prerequisites
 --------------
 
 - Be able to estimate an odds ratio from a 2x2 table, and a test of significance of the odds ratio.
-- Have basic R programming skills
+- Basic R programming skills
 
 Learning objectives
 -------------------
@@ -18,7 +18,7 @@ Learning objectives
 - Understand the ideas of estimation and hypothesis testing in the context of statistical modelling.
 - Be able to implement some simple models.
 
-Suggested Software
+Required Software
 ----------------------
-1. [RStudio](https://www.rstudio.com/) (or plain R if you prefer).
+1. [RStudio](https://www.rstudio.com/), or plain R if you prefer.
 
