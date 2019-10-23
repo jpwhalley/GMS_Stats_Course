@@ -11,7 +11,7 @@ Teachers please put your course data in the relevant folder:
 5_Machine_Learning_Applications
 ```
 
-Students: please read the prerequisites in each folder before your course - in particular please try to install any computing requirements.
+Students please read the prerequisites in each folder before each section of the course. In particular please try to install any computing requirements.
 
 Suggested Software
 ----------------------
