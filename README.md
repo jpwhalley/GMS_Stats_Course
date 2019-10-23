@@ -22,29 +22,17 @@ Timetable
 | When | What | Where |
 | ---- | ---- | ----- |
 | 28/10/2019 | Introduction to Statistics Day 1 (JPW) | Room A |
-
-29/10/2019 (morning) - Introduction to Statistics Day 2 (JPW) - CCMP2
-
-29/10/2019 (afternoon) - Statistical Modelling I (GB) - CCMP2
-
-04/11/2019 (morning) - Introduction to Bayesian Analysis (AP) - Room B
-
-04/11/2019 (afternoon) - Statistical Modelling I (GB) - Room B
-
-05/11/2019 - Introduction to Genome-wide association studies (NR and TF) - Room B
-
-15/11/2019 - Statistical modelling II - sampling (AA) - Room B
-
-27/11/2019 - Statistical Analysis of Genome-wide data (DC) - Room B
-
-28/11/2019 - Statistical Analysis of Genome-wide data (DC) - Room B
-
-03/12/2019 - Machine Learning Applications (GL) - Room B
-
-05/12/2019 - Machine Learning Applications (GL) - Room B
-
-06/12/2019 (morning) - Statistical Modelling III - Hidden Markov Models (VI) - Room B
-
-06/12/2019 (afternoon) - Wrap-up session - Room B
+| 29/10/2019 (morning) | Introduction to Statistics Day 2 (JPW) | CCMP2 |
+| 29/10/2019 (afternoon) | Statistical Modelling I (GB)| CCMP2 |
+| 04/11/2019 (morning) | Introduction to Bayesian Analysis (AP) | Room B |
+| 04/11/2019 (afternoon) | Statistical Modelling I (GB) | Room B |
+| 05/11/2019 | Introduction to Genome-wide association studies (NR, TF) | Room B |
+| 15/11/2019 | Statistical modelling II - sampling (AA) | Room B |
+| 27/11/2019 | Statistical Analysis of Genome-wide data (DC) | Room B |
+| 28/11/2019 | Statistical Analysis of Genome-wide data (DC) | Room B |
+| 03/12/2019 | Machine Learning Applications (GL) | Room B |
+| 05/12/2019 | Machine Learning Applications (GL) | Room B |
+| 06/12/2019 (morning) | Statistical Modelling III - Hidden Markov Models (VI) | Room B |
+| 06/12/2019 (afternoon) | Wrap-up session | Room B |
 
 
