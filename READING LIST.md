@@ -15,7 +15,7 @@ reads that complement the statistics training, this is a great place to start.  
 
 ## Books
 
-"*Computer Age Statistical Inference*", by Bradley Efron and Trevor Hastie.  This is [freely available](http://web.stanford.edu/~hastie/CASI/) online and covers many topics relevant the course.
+"*Computer Age Statistical Inference*", by Bradley Efron and Trevor Hastie.  This is [freely available](http://web.stanford.edu/~hastie/CASI/) online and covers many topics relevant to the course.
 
 "*Biological Sequence Analysis*" by Richard Durbin et al.  Seminal book on sequence aligment problems and on hidden markov models.
 
