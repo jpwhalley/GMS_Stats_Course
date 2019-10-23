@@ -5,6 +5,7 @@ Prerequisites
 --------------
 
 - Be able to estimate an odds ratio from a 2x2 table, and a test of significance of the odds ratio.
+- Have basic R programming skills
 
 Learning objectives
 -------------------
