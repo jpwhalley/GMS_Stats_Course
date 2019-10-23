@@ -4,12 +4,14 @@ Content for the GMS Statistics Course
 Teachers please put your course data in the relevant folder:
 
 ```
-/1_Introduction_to_Statistics
-/2_Statistical_Modelling
-/3_Introduction_Bayesian_Modelling
-/4_Statistical_Analysis_of_Genome-wide_data
-/5_Machine_Learning_Applications
+1_Introduction_to_Statistics
+2_Statistical_Modelling
+3_Introduction_Bayesian_Modelling
+4_Statistical_Analysis_of_Genome-wide_data
+5_Machine_Learning_Applications
 ```
+
+Students - please read the prerequisites in each folder before your course - in particular please try to install any computing requirements.
 
 Suggested Software
 ----------------------
