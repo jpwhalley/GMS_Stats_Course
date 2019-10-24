@@ -6,7 +6,8 @@ Content for each section of the course is in the relevant folder:
 * [Introduction to Statistics](https://github.com/jpwhalley/GMS_Stats_Course/tree/master/1_Introduction_to_Statistics)
 * [Statistical Modelling](https://github.com/jpwhalley/GMS_Stats_Course/tree/master/2_Statistical_Modelling)
 * [Introduction Bayesian Modelling](https://github.com/jpwhalley/GMS_Stats_Course/tree/master/3_Introduction_Bayesian_Modelling)
-* [Statistical Analysis of Genome-wide data](https://github.com/jpwhalley/GMS_Stats_Course/tree/master/4_Statistical_Analysis_of_Genome-wide_data)
+* [Introduction to GWAS](https://github.com/jpwhalley/GMS_Stats_Course/tree/master/4_Introduction_to_GWAS)
+* [Statistical Analysis of Genome-wide data](https://github.com/jpwhalley/GMS_Stats_Course/tree/master/5_Statistical_Analysis_of_Genome-wide_data)
 * [Machine Learning Applications](https://github.com/jpwhalley/GMS_Stats_Course/tree/master/5_Machine_Learning_Applications)
 
 Students please read the README in the relevant folder before each section of the course.  In particular, please try to install any computing requirements beforehand.  As a basic minimum you are likely to need:
