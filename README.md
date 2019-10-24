@@ -32,13 +32,14 @@ Course Timetable 2019
 
 | When | What | Who | Where |
 | ---- | ---- | --- | ----- |
-| 28/10/2019 | Introduction to Statistics Day 1 | J.P.W | Room A |
+| 28/10/2019 | Introduction to Statistics Day 1 | J.P.W | Room B |
 | 29/10/2019 (morning) | Introduction to Statistics Day 2 | J.P.W | CCMP2 |
 | 29/10/2019 (afternoon) | Statistical Modelling I - introduction | G.B | CCMP2 |
 | 04/11/2019 (morning) | Introduction to Bayesian Analysis | A.P | Room B |
 | 04/11/2019 (afternoon) | Statistical Modelling I - introduction | G.B | Room B |
-| 05/11/2019 | Introduction to Genome-wide association studies | N.R, T.F | Room B |
-| 15/11/2019 | Statistical modelling II - sampling | A.A | Room B |
+| 05/11/2019 | Introduction to Bayesian Analysis | A.P | Room B |
+| 12/11/2019 | Introduction to Genome-wide association studies | N.R, T.F | Room B |
+| 15/11/2019 | Statistical modelling II - sampling | A.A | Room A |
 | 27/11/2019 | Statistical Analysis of Genome-wide data | D.C | Room B |
 | 28/11/2019 | Statistical Analysis of Genome-wide data | D.C | Room B |
 | 03/12/2019 | Machine Learning Applications (GL) | G.L | Room B |
