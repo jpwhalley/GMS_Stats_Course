@@ -7,8 +7,9 @@ Teachers please put your course data in the relevant folder:
 /1_Introduction_to_Statistics
 /2_Statistical_Modelling
 /3_Introduction_Bayesian_Modelling
-/4_Statistical_Analysis_of_Genome-wide_data
-/5_Machine_Learning_Applications
+/4_Introduction_to_GWAS
+/5_Statistical_Analysis_of_Genome-wide_data
+/6_Machine_Learning_Applications
 ```
 
 Suggested Software
