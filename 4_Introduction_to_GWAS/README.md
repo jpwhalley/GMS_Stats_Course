@@ -1,4 +1,4 @@
-GMS Introduction to Bayesian Modelling
+GMS Introduction to GWAS
 ======================================
 
 Suggested Software

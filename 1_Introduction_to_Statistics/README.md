@@ -3,7 +3,7 @@ GMS Introduction to Statistics
 
 Prerequisites
 -------------
-None
+Try to install the suggested software:
 
 Suggested Software
 ----------------------
@@ -11,16 +11,18 @@ Suggested Software
 	* adjusttext - can install using `pip install adjusttext`
 2. [R](https://www.r-project.org/) with the following packages:
 	* FactoMineR - `install.packages("FactoMineR")` and factoextra - `install.packages("factoextra")`
-	* XGR - `install.packages("XGR")`
 	* pwr - `install.packages("pwr")`
-3. Any spreadsheet software (optional)
+	* XGR -
+```
+if(!("BiocManager" %in% rownames(installed.packages()))) install.packages("BiocManager")
+BiocManager::install("XGR", dependencies=T)
+```
 
 Blocks
 --------
 1. Tests of significance and correlations
 2. Dealing with uncertainty from raw experimental data and linear regression
 3. Big data sets and dimension reduction methods, multiple testing and power calculations
-4. Logistic regression
 
 Timetable
 ---------
@@ -28,7 +30,15 @@ Timetable
 |---------------|--------------|--------------|
 | 09:30 - 12:00 | Block 1      | Block 3      |
 | 12:00 - 13:30 | Lunch Break  |              |
-| 13:30 - 16:00 | Block 3      | Block 4      |
+| 13:30 - 16:00 | Block 2      |     	      |
+
+Learning Objectives
+-------------------
+* Those who have less experience in Statistics, confident in developing a hypothesis, choosing a test and implementing it to their data to find if significant or not.
+* Those who have less experience in working with Biological datasets, get experience working with genotype data, gene expression data and raw experimental data from qPCR experiments.
+* Use of confidence intervals, what to use and how to assess them in reported research.
+* How to use dimension reduction methods to get an initial first look at the data
+* The perils of multiple testing and the methods to test significance when doing lots of tests.
 
 Online Resources
 ----------------

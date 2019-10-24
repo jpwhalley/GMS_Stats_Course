@@ -38,8 +38,6 @@ fviz_contrib(res.pca, choice = "ind", axes = 1:2)
 ## ex3b(ii) What is interesting about the top 50 components?
 ## Looking and testing for enrichment
 # Optional installation, can use web plug in http://galahad.well.ox.ac.uk:3020/
-source("http://bioconductor.org/biocLite.R")
-biocLite("XGR")
 library(XGR)
 RData.location <- "http://galahad.well.ox.ac.uk/bigdata_dev/"
 

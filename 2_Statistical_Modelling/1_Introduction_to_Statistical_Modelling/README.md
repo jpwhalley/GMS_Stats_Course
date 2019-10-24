@@ -13,7 +13,8 @@ meta-analysis.
 Prerequisites
 --------------
 
-- Be able to estimate an odds ratio from a 2x2 table, and be able to perform a basic test of significance of the odds ratio.
+- Be able to estimate an odds ratio from a 2x2 table, and a test of significance of the odds ratio.
+- Basic R programming skills
 
 Learning objectives
 -------------------
