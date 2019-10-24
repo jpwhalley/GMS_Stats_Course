@@ -22,7 +22,9 @@ Mailing list
 
 For questions on the course content, help with installing needed software, or stats questions in general, please email:
 
+```
 gms [dash] stats [at] well [dot] ox [dot] ac [dot] uk
+```
 
 Emails to this address get sent to all the students and all the teachers on the GMS Statistics course, and we'll do our best to provide helpful answers.
 
