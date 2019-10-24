@@ -25,7 +25,7 @@ For questions on the course content, help with installing needed software, or st
 
 gms-stats@well.ox.ac.uk
 
-Emails to this address get sent to all the students and all the teachers on the GMS Statistics course, and we'll do our best to answer.
+Emails to this address get sent to all the students and all the teachers on the GMS Statistics course, and we'll do our best to provide helpful answers.
 
 Course Timetable 2019
 ---------------------
