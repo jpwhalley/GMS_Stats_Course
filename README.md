@@ -3,13 +3,11 @@ Content for the GMS Statistics Course
 
 Content for each section of the course is in the relevant folder:
 
-```
-[1_Introduction_to_Statistics](https://github.com/jpwhalley/GMS_Stats_Course/tree/master/1_Introduction_to_Statistics)
-[2_Statistical_Modelling](https://github.com/jpwhalley/GMS_Stats_Course/tree/master/2_Statistical_Modelling)
-[3_Introduction_Bayesian_Modelling](https://github.com/jpwhalley/GMS_Stats_Course/tree/master/3_Introduction_Bayesian_Modelling)
-[4_Statistical_Analysis_of_Genome-wide_data](https://github.com/jpwhalley/GMS_Stats_Course/tree/master/4_Statistical_Analysis_of_Genome-wide_data)
-[5_Machine_Learning_Applications](https://github.com/jpwhalley/GMS_Stats_Course/tree/master/5_Machine_Learning_Applications)
-```
+* [1_Introduction_to_Statistics](https://github.com/jpwhalley/GMS_Stats_Course/tree/master/1_Introduction_to_Statistics)
+* [2_Statistical_Modelling](https://github.com/jpwhalley/GMS_Stats_Course/tree/master/2_Statistical_Modelling)
+* [3_Introduction_Bayesian_Modelling](https://github.com/jpwhalley/GMS_Stats_Course/tree/master/3_Introduction_Bayesian_Modelling)
+* [4_Statistical_Analysis_of_Genome-wide_data](https://github.com/jpwhalley/GMS_Stats_Course/tree/master/4_Statistical_Analysis_of_Genome-wide_data)
+* [5_Machine_Learning_Applications](https://github.com/jpwhalley/GMS_Stats_Course/tree/master/5_Machine_Learning_Applications)
 
 Students please read the README in the relevant folder before each section of the course.  In particular, please try to install any computing requirements beforehand.  As a basic minimum you are likely to need:
 
