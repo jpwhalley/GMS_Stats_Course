@@ -42,8 +42,8 @@ Course Timetable 2019
 | 15/11/2019 | Statistical modelling II - sampling | A.A | Room A |
 | 27/11/2019 | Statistical Analysis of Genome-wide data | D.C | Room B |
 | 28/11/2019 | Statistical Analysis of Genome-wide data | D.C | Room B |
-| 03/12/2019 | Machine Learning Applications (GL) | G.L | Room B |
-| 05/12/2019 | Machine Learning Applications (GL) | G.L | Room B |
+| 03/12/2019 | Machine Learning Applications | G.L | Room B |
+| 05/12/2019 | Machine Learning Applications | G.L | Room B |
 | 06/12/2019 (morning) | Statistical Modelling III - Hidden Markov Models | V.I | Room B |
 | 06/12/2019 (afternoon) | Wrap-up session | | Room B |
 
