@@ -30,8 +30,8 @@ Emails to this address get sent to all the students and all the teachers on the 
 Course Timetable 2019
 ---------------------
 
-| When | What | Who | Where |
-| ---- | ---- | --- | ----- |
+| When | What | Teacher | Where |
+| ---- | ---- | ------- | ----- |
 | 28/10/2019 | Introduction to Statistics Day 1 | J.P.W | Room B |
 | 29/10/2019 (morning) | Introduction to Statistics Day 2 | J.P.W | CCMP2 |
 | 29/10/2019 (afternoon) | Statistical Modelling I - introduction | G.B | CCMP2 |
