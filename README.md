@@ -15,7 +15,7 @@ Students please read the README in the relevant folder before each section of th
 1. [Anaconda3 (for python3 notebooks)](https://www.anaconda.com/download/)
 2. [RStudio](https://www.rstudio.com/)
 
-Some courses will also require specific packages or other software.
+Specific modules will also require specific packages or other software to be installed - these are detailed in the README files in each folder, and/or will be communicated by teachers beforehand.
 
 Mailing list
 ------------
