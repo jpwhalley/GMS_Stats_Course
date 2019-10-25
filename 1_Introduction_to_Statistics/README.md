@@ -34,8 +34,8 @@ Timetable
 ---------
 |               | October 28   | October 29   |
 |---------------|--------------|--------------|
-| 09:30 - 12:00 | Block 1      | Block 3      |
-| 12:00 - 13:30 | Lunch Break  |              |
+| 10:30 - 12:30 | Block 1      | Block 3      |
+| 12:30 - 13:30 | Lunch Break  |              |
 | 13:30 - 16:00 | Block 2      |     	      |
 
 Learning Objectives
