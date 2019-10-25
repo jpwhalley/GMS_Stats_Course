@@ -20,9 +20,8 @@ BiocManager::install("XGR", dependencies=T)
 
 Data
 ----
-[Genetic distances for block 3](https://www.dropbox.com/s/ttkr4huvzvp6zrp/genetic_distances.csv?dl=0)
-
-[Microarray data for block 3](https://www.dropbox.com/s/36alrxj77ogx0z8/microarray_all_expression.csv?dl=0)
+* [Genetic distances for block 3](https://www.dropbox.com/s/ttkr4huvzvp6zrp/genetic_distances.csv?dl=0)
+* [Microarray data for block 3](https://www.dropbox.com/s/36alrxj77ogx0z8/microarray_all_expression.csv?dl=0)
 
 Blocks
 --------
@@ -48,7 +47,6 @@ Learning Objectives
 
 Online Resources
 ----------------
-* [Python Tutorial](https://www.codecademy.com/learn/learn-python)
 * [10 Minutes to Pandas](https://pandas.pydata.org/pandas-docs/stable/10min.html)
 * [Nature Methods Points of Significance Column](https://www.nature.com/collections/qghhqm/pointsofsignificance)
 * [Principal Component Methods in R: Practical Guide](http://www.sthda.com/english/articles/31-principal-component-methods-in-r-practical-guide/112-pca-principal-component-analysis-essentials/#biplot)
