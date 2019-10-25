@@ -3,7 +3,7 @@ GMS Introduction to Statistics
 
 Prerequisites
 -------------
-Try to install the suggested software:
+Download data and try to install the suggested software:
 
 Suggested Software
 ----------------------
@@ -17,6 +17,11 @@ Suggested Software
 if(!("BiocManager" %in% rownames(installed.packages()))) install.packages("BiocManager")
 BiocManager::install("XGR", dependencies=T)
 ```
+
+Data
+----
+[Genetic distances for block 3](https://www.dropbox.com/s/ttkr4huvzvp6zrp/genetic_distances.csv?dl=0)
+[Microarray data for block 3](https://www.dropbox.com/s/36alrxj77ogx0z8/microarray_all_expression.csv?dl=0)
 
 Blocks
 --------
