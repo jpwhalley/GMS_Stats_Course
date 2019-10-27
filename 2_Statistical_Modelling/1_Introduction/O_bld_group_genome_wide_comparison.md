@@ -38,9 +38,18 @@ X = read.csv(
 Let's first sanity check I've computed frequencies right.  It's often best to first collect numerical data into a matrix - this is a container of numbers that is layed out nicely in memory for computation.  (Unlike a data frame which holds columns of data of different types).  The `as.matrix()` function does this:
 ```
 data = as.matrix( X[, c( "controls:A", "controls:B", "cases:A", "cases:B" )])
-head(data) # take a look
+# look at the data
+head( data )
+
 X$frequency = (data[,2] + data[,4]) / rowSums(data)
-hist( X$frequency )
+
+# plot it
+hist(
+    X$frequency,
+    breaks = 5, # how many bars across the plot?
+    xlab = "Recessive dosage frequency",
+    xlim = c( 0.3, 0.7 ) 
+)
 abline( v = X$frequency[ which( X$rsid == 'rs8176719' )], col = 'red' )
 ```
 
@@ -60,24 +69,27 @@ X$SE = sqrt( rowSums( 1/data ))
 
 Calibrate against our null model.  This is done by finding the mass of the normal distribution with the given standard error, outside the estimated log odds ratio.
 ```
-X$pvalue = pnorm( abs(X$logOR), sd = X$SE, lower.tail = T ) * 2
+X$pvalue = pnorm( -abs(X$logOR), sd = X$SE ) * 2
 ```
 *Note*: the `abs()` and multiplying by two in the above occur because there's both a left and right tail for the normal distribution.  We'd be interested in effects going in either direction.
 
 Now make a quantile-quantile plot.  This plots ranked p-values against ranked expected quantiles:
 ```
-pvalues = log10( sort( X$pvalue ) )
-expected = log10( (1:length(pvalues)  / (length(pvalues)+1)))
+pvalues = -log10( sort( X$pvalue ) )
+expected = -log10( (1:length(pvalues)  / (length(pvalues)+1)))
 plot(
     expected,
     xlab = "Expected log10 P-value",
     pvalues,
     ylab = "Observed log10 P-value",
-    pch = 19 # nice round dots
+    pch = 19, # nice round dots
+    xlim = c( 0, 20 ), # make it square
+    ylim = c( 0, 20 )  # make it square
 )
 abline( a = 0, b = 1, lty = 2 )
-# Let's highlight O blood group:
-w = which( pvalues == X$pvalue[ X$rsid == 'rs8176719' ])
+
+# Let's highlight O blood group on the plkot:
+w = which( pvalues == -log10( X$pvalue[ X$rsid == 'rs8176719' ]))
 points(
     expected[w],
     pvalues[w],
@@ -86,22 +98,38 @@ points(
 text(
     expected[w],
     pvalues[w],
-    side = 4,
+    pos = 2,             # put it to left
+    adj = 1,             # right-justify
     label = "O bld grp"
 )
 ```
+This is what's called a 'q-q plot' or a 'quantile-quantile plot'.
 
 ## Summary
 
 We have shown
 
-* That O blood has an estimated protective effect in these data.
-* That such a large estimated effect is unlikely *under the formal model assumptions* if the effect were really zero.
-* That this observed odds ratio doesn't seem to be a spurious of effect of something we haven't thought of (that affects other variants genome-wide).
-* And indeed that genome-wide variants seem largely compatible with the model assumptions.
+1. That O blood has an estimated protective effect in these data.
+2. That such a large estimated effect is unlikely *under the formal model assumptions* if the effect were really zero (hence the small P-value).
+3. That this observed odds ratio doesn't seem to be a spurious of effect of something we haven't thought of, that might affect other variants genome-wide.
+4. However, genome-wide variants don't seem 100% compatible with the model assumptions.
 
-In addition we know
+Note that:
 
-* The O blood group mutation (rs8176719) is a functional mutation - a deletion of protein-coding sequence that alters red cell surface antigens.
+* point 1 is purely about our statistical model and the data we have observed
+* point 2 is a comparison of our data with a *hypothetical infinite set of unobserved data* generated under the model assumptions.
+* point 3 is a comparison of our data with other real data generated in the same samples
+* point 4 
 
-(At this point I am starting to get convinced.)
+ and 2 are about our statistical model, but points 3 and 4 are about whether our statistical model really reflects our conceptual model of what's going on.
+
+Of course we also know:
+
+* The O blood group mutation (rs8176719) is a deletion of protein-coding sequence that alters red cell surface antigens.
+
+Making us a priori likely to think this might be involved (compared to, say, a randomly chosen genetic variant).
+
+## Interpretation
+
+What's going on re: point 4?  There are different possibilities.  It could be that many variants actually have nonzero real effects on malaria susceptibility.  Or, it could be that there is some confounding going on.  In this case the latter seems likely - after all we've taken data from across 7 diverse African populations and fit
+
