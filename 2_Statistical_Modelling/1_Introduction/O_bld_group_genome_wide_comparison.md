@@ -10,9 +10,9 @@ severe malaria cases  3925.334             2737.664
 
 The odds ratio computed from this table is 0.74 - suggesting O blood group is protective.  And a test of this table using `chisq.test()` or `fisher.test()` shows that this is highly statistically significant.  That means:
 
-> *If* the data were truly sampled from a binomial distribution with given frequency in each row
-> and *if* the true odds ratio was zero
-> then the table would almost never occur.
+* *If* the data were truly sampled from a binomial distribution with given frequency in each row
+* and *if* the true odds ratio was zero
+then the table would almost never occur.
 
 These are approximations which don't really hold.  Samples are not really independent (e.g. population structure is itself a reflection of distant relationships); frequencies might vary across populations; in a finite population it's not really credible that the true effect size is really zero (though it might be very close).
 
