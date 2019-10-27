@@ -15,14 +15,16 @@ Students please read the README in the relevant folder before each section of th
 1. [Anaconda3 (for python3 notebooks)](https://www.anaconda.com/download/)
 2. [RStudio](https://www.rstudio.com/)
 
-Some courses will also require specific packages or other software.
+Specific modules will also require specific packages or other software to be installed - these are detailed in the README files in each folder, and/or will be communicated by teachers beforehand.
 
 Mailing list
 ------------
 
 For questions on the course content, help with installing needed software, or stats questions in general, please email:
 
-gms-stats@well.ox.ac.uk
+```
+gms [dash] stats [at] well [dot] ox [dot] ac [dot] uk
+```
 
 Emails to this address get sent to all the students and all the teachers on the GMS Statistics course, and we'll do our best to provide helpful answers.
 
