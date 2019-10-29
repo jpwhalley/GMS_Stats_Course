@@ -27,7 +27,9 @@ This course is compulsory for GMS DPhil students. It introduces the basic concep
 
 BACKGROUND KNOWLEDGE REQUIRED:
 GMS module: Introduction to Statistics for Genomics
+
 Software: R 3.6 and R studio 1.2
+
 Statistics: basic knowledge in probability theory and classical (frequentist) statistics
 
 MODULE STRUCTURE: 
@@ -35,7 +37,9 @@ The course contains a mixture of frontal lectures and practicals. During the lec
 
 FILES:
 Introduction to Bayesian statitsics.pptx: the lecture will start with this power point which will be completed by the students during the course.
+
 practical_nb.1.pptx: this power point will be used to introduce practical 1 (in R)
+
 practical_nb.1.R: the R file corresponding to practical 1
 
 ASSESSMENT:
