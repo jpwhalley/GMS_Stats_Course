@@ -18,9 +18,9 @@ OVERALL MODULE LEARNING OUTCOMES:
 By the end of this module, students should be able to: 
 •	Compare and contrast Bayesian versus frequentist interpretations of probability.
 •	Understand and explain what a posterior distribution is.
-•	Use R to build Bayesian models and perform Bayesian inference
-•	Describe the necessary tools for model checking and comparison and be able to implement those in R
-•	Optional (if time allows): describe the basics of Monte Carlo (MC) and Markov Chain Monte Carlo (MCMC) parameter estimation procedures.
+•	Use R to build Bayesian models and perform Bayesian inference.
+•	Describe the necessary tools for model checking and comparison and be able to implement those in R.
+•	Describe the basics of simple parameter estimation procedures.
 
 DESCRIPTION: 
 This course is compulsory for GMS DPhil students. It introduces the basic concepts related to Bayesian statistics and Bayesian modelling. The skills acquired during the course are applicable to: (i) data analysis and PhD dissertation (for those who choose to carry out Bayesian analysis); (ii) the interpretation of genomics/biomedical papers, which use Bayesian methods for the statistical analyses. In addition, students interested in a career in Biostatistics will particularly benefit from this module. 
