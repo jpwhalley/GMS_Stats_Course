@@ -3,34 +3,37 @@
 #Understanding the posterior distribution
 #Source: Statistical rethinking, R. MacElreath (book "SR")
 
-#Exercise 1: looking into a common likelihood function: the Binomial distribution
-#Context: you have studied the binomial distribution during your course. Try to reproduce the figures in the power point
+#Exercise 1 (SR, Ch. 2.4.1): let's look at a common likelihood function: the Binomial distribution
+#Context: you have studied the binomial distribution during your course.
+#Try to reproduce the histograms in the power point (slides 3-4)
 # a) with n=15, p=0.2
 # b) with n=15, p=0.8
 # c) with n=15, p=0.5
 # d) with n=40, p=0.2
 
-#how n and p influcence the shape of the distribution?
+#How n and p influcence the shape of the distribution?
 
 #Exercise 2
 #Context: how much water covers the earth? imagine a version of the globe small enough to hold in your hands.
 #Experience: you toss the globe up in the air, when you catch it you record whether or not the surface under
-#your right finger is water or land. You repeat the procedure n times.
+#your index finger of your right hand is water or land. You repeat the procedure n times.
 #The true proportion of water is p
 #A single toss of the globe has probability p of producing water and 1-p of producing land
 #Each toss is independent
 
 #Computing posterior distribution by grid approximation
-#define number of points
-#define grid
-#define prior
-#compute likelihood at each value in grid
-#product prior * likelihood
-#standardize the posterior, so it sums to 1
+#Steps:
 
-#plot
+#1.define number of points
+#2. define grid (the values should go from 0 to 1 given that we focus on probability to get "water")
+#3. define prior (define a flat prior with constant value of 1)
+#4. compute likelihood at each value in grid (tip: use command dbinom)
+#5. product prior * likelihood
+#6. standardize the posterior, so it sums to 1
 
-#TASKS
+#plot the approximated posterior
+
+#Next steps:
 
 #1.change the number of points and plot the new graphs. What are the effect on the approximation of the posterior distribution?
 
