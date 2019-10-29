@@ -179,7 +179,8 @@ w = which( pvalues == -log10( X$pvalue[ X$rsid == 'rs8176719' ]))
 points(
     expected[w],
     pvalues[w],
-    col = 'red'
+    col = 'red',
+    xlab = "Z score"
 )
 text(
     expected[w],
