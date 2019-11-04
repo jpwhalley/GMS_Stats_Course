@@ -58,6 +58,7 @@ priors = expand.grid(
 )
 rownames( priors ) = sapply( 1:nrow( priors ), function(i) { paste( priors[i,], collapse = "" )})
 priors = priors[-1,] # remove the null model
+head(priors)
 ```
 
 For our initial analysis we will weight each model such that there is the same prior
@@ -160,6 +161,16 @@ colSums( phenotype.posteriors )
 ```
 (Chrohn's disease has the most)
 
+##
+
+How many SNPs have (say) > twice, or greater than 10 times the posterior mass on models with at least 2 effects?
+```R
+length( which( rowSums( count.posteriors[,2:7] ) > 2 * count.posteriors[,1] ) )
+length( which( rowSums( count.posteriors[,2:7] ) > 10 * count.posteriors[,1] ) )
+```
+
+Compare our results with those of Cotsapas et al paper.  They identified 47 SNPs with evidence of more than one association.  Their method, though, looked for statistical significance of >1 effect and didn't take into account effect size sharing.  Which of these is right?  Is either right?
+
 ## Interesting findings
 
 Some SNPs are identified as having effects on all traits - yet have very non-significant P-values:
@@ -178,21 +189,18 @@ Presumably, the -ve estimates for MS and CD imply that other -ve estimates appea
 ## Caution
 
 This analysis highlights a typical aspect of a Bayesian analysis - it requires some thought.
+This is both a burden on the bayesian analyst, but also a great advantage (c.f. the discussion in lectures of statistical and conceptual models).  In short you will have to do the thought anyway and this is a good place to do it.
+
 Here, we have a particular prior assumption that each number of associations has equal weight.
 Is that realistic?
 
 We also have a prior assumption on the correlation between traits - is that realistic?
 
-Compare our results with those of Cotsapas et al paper.  They identified 47 SNPs with evidence of more than one association.  Their method, though, looked for statistical significance of >1 effect and didn't take into account effect size sharing.
-
-My own view is that there are many choices we've made that need defending (or generalising).  But on the other hand the search for statistical significance is conservative
-
 ## Empirical Bayes
 
-We could now implement an 'empirical Bayes' approach.
-We learn new model weights using all the SNPs we've seen:
+We could now implement an 'empirical Bayes' approach by learning new model weights using all the SNPs we've seen:
 ```R
 empirical.weights = colSums( posteriors )
 ````
-Now we could recompute BFs using the empirical weights.
+We would then recompute BFs using the empirical weights.
 
