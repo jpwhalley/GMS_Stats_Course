@@ -180,6 +180,12 @@ This analysis highlights a typical aspect of a Bayesian analysis - it requires s
 Here, we have a particular prior assumption that each number of associations has equal weight.
 Is that realistic?
 
+We also have a prior assumption on the correlation between traits - is that realistic?
+
+Compare our results with those of Cotsapas et al paper.  They identified 47 SNPs with evidence of more than one association.  Their method, though, looked for statistical significance of >1 effect and didn't take into account effect size sharing.
+
+My own view is that there are many choices we've made that need defending (or generalising).  But on the other hand the search for statistical significance is conservative
+
 ## Empirical Bayes
 
 We could now implement an 'empirical Bayes' approach.
