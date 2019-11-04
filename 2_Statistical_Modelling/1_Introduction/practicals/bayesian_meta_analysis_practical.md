@@ -71,7 +71,9 @@ weights = matrix(
 ) / 7
 ```
 
-We'll use this to compute priors for any row:
+This prior weighting means there is more weight on (say) the single model of all traits, than there is on each of the 7 models of association with a single trait, or the (7 choose k) models of association with k traits (1 < k < 7).
+
+This function is used to compute prior matrices for any given prior from the above tablne:
 ```
 compute.prior.matrix <- function( row, rho = 0.9, sd = 0.2 ) {
     prior = matrix( 0, 7, 7 )
@@ -82,8 +84,12 @@ compute.prior.matrix <- function( row, rho = 0.9, sd = 0.2 ) {
 }
 ```
 
+The prior matrix has a nonzero variance in the diagonal entries corresponding to 1's in the priors
+table. And it assumes a correlation (by default 0.9) between the effects with nonzero variance.
+
 ## Computing BFs
-So we have to compute 127 BFs for each of 107 SNPs.  Let's do it:
+
+We have to compute 127 BFs for each of 107 SNPs.  Let's do it in a loop and store it in a matrix.
 
 ```R
 bfs = matrix( NA, nrow( cotsapas ), nrow( priors ),
@@ -100,7 +106,7 @@ for( i in 1:nrow( cotsapas )) {
 }
 ```
 
-The BFs represent evidence against the null.  Here, we aren't interested in the null model (all SNPs have been chosen because they are associated).  But we are interested in the posterior probability of each model.  We compute that by a) multiplying by the prior weights and b) normalising so that posteriors sum to 1:
+The BFs represent evidence against the null.  Here, we aren't interested in the null model (all SNPs have been chosen because they are associated).  But we are interested in the posterior probability of each model.  We can compute that by a) multiplying by the prior weights and b) normalising so that posteriors sum to 1:
 ```
 posteriors = matrix( NA, nrow( cotsapas ), nrow( priors ),
     dimnames = list( cotsapas$SNP, rownames( priors ))
