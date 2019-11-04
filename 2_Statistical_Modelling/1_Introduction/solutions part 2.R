@@ -71,7 +71,7 @@ plot.loglikelihood <- function( Y, design.matrix, loglikelihood ) {
 	d = nrow( coefficients )
 	betas = coefficients[,'Estimate']
 	max.ll = loglikelihood( Y, design.matrix, betas )
-	par( mfrow = c( (d+1)/2, 2 ))
+	par( mfrow = c( (d+1)/2, 2 ), mar = c( 2, 3, 2, 1 ))
 	for( i in 1:d ) {
 		beta_hat = betas[i]
 		se = coefficients[i,'Std. Error']
@@ -86,6 +86,8 @@ plot.loglikelihood <- function( Y, design.matrix, loglikelihood ) {
 			evaluations,
 			type = 'l',
 			main = gsub( "design.matrix", "", rownames( coefficients )[i], fixed = T ),
+			xlab = "",
+			ylab = "ll",
 			lwd = 2
 		)
 		grid()
@@ -105,12 +107,24 @@ plot.loglikelihood <- function( Y, design.matrix, loglikelihood ) {
 			beta_hat, min( evaluations ), pos = 4,
 			sprintf(
 				"%.2f (%.2f - %.2f)",
-				exp(beta_hat),
-				exp(beta_hat - 1.96 * se ),
-				exp(beta_hat + 1.96 * se )
+				beta_hat,
+				beta_hat - 1.96 * se,
+				beta_hat + 1.96 * se
 			),
 			col = "red"
 		)
 	}
+}
+
+fixed.effect.meta <- function(
+	betas,
+	ses
+) {
+	W = 1 / sum( 1/ses^2 )
+	scaled_betas = betas / ses^2
+	return( list(
+		meta.beta = W * sum( scaled_betas ),
+		meta.se = sqrt(W)
+	))
 }
 
