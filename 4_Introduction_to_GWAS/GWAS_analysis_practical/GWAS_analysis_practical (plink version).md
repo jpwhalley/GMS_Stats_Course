@@ -366,7 +366,7 @@ We have now produced an analysis corrected for population structure.   Congratul
 
 *Note*: We've used a couple of options above that will make the output consistent across studies.  Firstly, as above we've used the --keep-allele-order option to make plink output odds ratios for the non-reference allele.  (By default it will output test statistics for the minor, i.e. less common allele, but that's problematic as it might vary between studies.)  We've also used the `--ci` option to tell plink to output a standard error along with the odds ratio.  These options are particularly useful if you are using the output in a meta-analysis with other studies.
 
-For now, let's use the text editor, spreadsheet and R (as in yesterday’s practicals) to examine these results.
+For now, let's use the text editor, spreadsheet and R (as in the sections above) to examine these results.
 
 Note that the output file “pccorrected-test.assoc.logistic” contains information for the SNPs and also all the principal components. Make sure you extract just the SNP lines (those that have “ADD” in the TEST column):
 
@@ -376,13 +376,13 @@ data<-read.table( "pccorrected-test.assoc.logistic", header = T )
 data <- data[data$TEST == "ADD",]
 ```
 
-*Q.* Has stratifying by disease group corrected our inflation?
+*Q.* Has stratifying by disease group corrected our inflation?  (Re-make the QQ-plot).
 
 *Q.* Are there any disease associations in this dataset?
 
 *Q.* How are the QC statistics for any associated SNPs? Do you believe these associations?
 
-*Q.* Can you find out anything about the function of these associated SNPs, using the tools you learned about in the Public Resources practical?
+*Q.* Can you find out anything about the function of these associated SNPs?  For example using online tools such as [UCSC Genome Browser](https://genome.ucsc.edu/cgi-bin/hgGateway).  (Note we are using GRCh37/hg19 coordinates.)
 
 *Q.* What could explain differences in association p-values in the different analyses we’ve done?
 
@@ -404,8 +404,8 @@ To make a hitplot we need to load data on all of these things.  To begin, make s
 
 ```R
 # In R:
-    data<-read.table( "pccorrected-test.assoc.logistic", header = T )
-    data <- data[data$TEST == "ADD",]
+data <- read.table( "pccorrected-test.assoc.logistic", header = T )
+data <- data[data$TEST == "ADD",]
 ```
 
 ### Loading the data
@@ -423,7 +423,14 @@ data[ which( data$BP > 4.5E7 )[1],]
 Note down the rsids (in the ‘SNP’ column) of the three SNPs.  As a sanity check, all three should have a P-value less than 10-6.  In this practical we’ll concentrate on the third SNP, which has the lowest P-value, but a question will ask you to repeat this for the other two SNPs.  Now in the terminal let’s use plink to compute LD:
 
 ```sh
-$ ./plink --bfile chr19-clean --keep resources/controls.txt --r2 dprime --ld-window 10000 --ld-window-kb 1000000 --ld-window-r2 0.05 --ld-snps rs57558361 rs376047 rs112820994
+$ ./plink \
+--bfile chr19-clean \
+--keep resources/controls.txt \
+--r2 dprime \
+--ld-window 10000 \
+--ld-window-kb 1000000 \
+--ld-window-r2 0.05 \
+--ld-snps rs57558361 rs376047 rs112820994
 ```
 
 This command says to compute pairwise r2 and D’ statistics between the three lead SNPs and all other SNPs within a window around them.  Only SNPs with r2>0.05 will appear in the output file.  (We’ve restricted the computation to control samples.  If these are population controls then we are estimating LD in the population).  Let’s load the result into our R session:
@@ -431,7 +438,7 @@ This command says to compute pairwise r2 and D’ statistics between the three l
 ```R
 # In R:
 ld <- read.table( "plink.ld", hea=T, as.is=T )
-View(ld)
+head(ld)
 ```
 
 Have a look at the results.  The last two columns contain estimates of r2 and D' between the SNPs listed in SNP_A and SNP_B columns.  For plotting, it's simplest to bin those values:
@@ -439,14 +446,14 @@ Have a look at the results.  The last two columns contain estimates of r2 and D'
 ```R
 # In R:
 ld$R2_bin <- cut( ld$R2, breaks = seq( 0, 1, by = 0.1 ))
-View(ld)
+head(ld)
 ```
 
 Now let's load the other data we need.  First, we'll load information on genes from the file `resources/refGene_chr19.txt` (which comes from the UCSC Genome browser):
 
 ```R
 genes <- read.table( "resources/refGene_chr19.txt.gz", header=T, as.is=T )
-View(genes)
+head(genes)
 ```
 
 This file is a bit complex.  Among other things it contains gene names (in the name2 column), transcription start and end points (txStart, txEnd), and the positions of exons (exonStarts, exonEnds).  One interesting thing you might notice is that some genes (e.g. FUT2) have several transcripts.  That's useful information but is a bit too much detail for our plot, so let's just keep the longest transcript of each gene:
@@ -466,7 +473,7 @@ Next we'll load recombination rate estimates from the HapMap project:
 
 ```R
 genetic_map <- read.table( "resources/genetic_map_chr19_combined_b37.txt.gz", hea=T, as.is=T )
-View( genetic_map )
+head( genetic_map )
 ```
 
 We're nearly ready to plot!  We'll make a hit plot near the most-associated SNP (rs112820994). Let's find a region around it:
@@ -544,9 +551,13 @@ We have wrapped up the above code - with a few more cosmetic tweaks - into a fun
 ```R
 source( 'scripts/hitplot.R' )
 hitplot( 'rs112820994', data, genes, ld, margin = 200000 )
+
+pdf( file = "rs112820994_hitplot.pdf", width = 8, height = 6 )
+hitplot( 'rs112820994', data, genes, ld, margin = 200000 )
+dev.off()
 ```
 
-*Q.* What gene is rs112820994 in?  Is it in an exon?  Are other top SNPs in the region also in genes?   (You may need to play around with the margin argument to zoom in or out of the plot.  You can cross-check using genome browsers such as the [UCSC Genome Browser]() or the [Ensembl Genome Browser]() - note that we are using GRCh37/hg19 coordinates).
+*Q.* What gene is rs112820994 in?  Is it in an exon?  Are other top SNPs in the region also in genes?   (You may need to play around with the margin argument to zoom in or out of the plot.  You can cross-check using genome browsers such as the [UCSC Genome Browser](https://genome.ucsc.edu/cgi-bin/hgGateway) - note that we are using GRCh37/hg19 coordinates).
 
 *Q.* Are there any obvious features near the boundaries of the region of associated SNPs?
 
@@ -582,7 +593,7 @@ table( as.integer(data$func2) )
 
 ## Reference Information
 
-You can download PLINK, and find much more information at the website:
+You can download PLINK, and find more information at the website:
 
 https://www.cog-genomics.org/plink2
 
