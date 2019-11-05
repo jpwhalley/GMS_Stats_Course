@@ -89,6 +89,7 @@ If we look in the assoc file we will see that this SNP, rs8135996, is associated
 *Advanced Question*.  What does `ADD` mean in the output?  Can you figure out how to run a non-additive test?  Which mode of inheritance has the greatest evidence?
 
 ## Forest plotting
+
 If you followed the Statistical modelling module earlier, we argued that what you want is to summarise the likelihood by its maximum (here the log odds ratio) and its standard error - thus approximating the likelihood by a gaussian function.  How can you get this out of plink's output? Can you figure this out from the [documentation for --logistic](https://www.cog-genomics.org/plink/1.9/assoc#linear)?
 
 Here's my take: using `--logistic beta` makes plink output the regression estimate (log odds ratio) instead of the odds ratio.  Plink also outputs what turns out to be a Wald test P-value.  (See [the notes](https://github.com/jpwhalley/GMS_Stats_Course/blob/master/2_Statistical_Modelling/1_Introduction/notes/computing_pvalues.md) from Statistical Modelling I for a definition).
@@ -133,7 +134,7 @@ Congratulations!  This is your first GWAS forest plot (albeit with only one row)
 
 (*Note*: I think adding the `--ci 0.95` option to the plink command line also makes plink output the standard errors.)
 
-## 
+## Renaming output files
 
 The final step in this introduction is to learn to rename PLINK’s output files, since we’ll be generating lots of them in the practicals.
 
