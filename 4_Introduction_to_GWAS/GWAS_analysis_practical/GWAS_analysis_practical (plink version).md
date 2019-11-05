@@ -96,7 +96,7 @@ Here's my take: using `--logistic beta` makes plink output the regression estima
 If you know this, you can use it to work out the standard error.  For example:
 
 ```sh
-$ ./plink --vcf snp-example.vcf --logistic --pheno snp-example.samples --allow-no-sex
+$ ./plink --vcf snp-example.vcf --logistic beta --pheno snp-example.samples --allow-no-sex
 ```
 And then using R:
 ```R
