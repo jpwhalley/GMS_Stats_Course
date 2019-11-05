@@ -1,10 +1,11 @@
 # Bayesian meta-analysis practical
 
-We use a Bayesian approach to meta-analysis across traits.
-This considers all models of association with one trait, with two traits, and so on up to all traits.  It uses Bayes Factors to compute relative strengths of evidence.
-
 We use data from Cotsapas et al PLoS Genetics (2011) https://doi.org/10.1371/journal.pgen.1002254
-Data is effect size estimates and standard errors for 107 SNPs and 7 autoimmune traits.
+Data is effect size estimates and standard errors for 107 SNPs and 7 autoimmune traits.  We'd like to know - to what extent are genetic effects shared across these traits?
+
+To answer this we'll use a Bayesian approach to meta-analysis across traits.  This considers all models of association with one trait, with two traits, and so on up to all traits.  It uses Bayes Factors to compute relative strengths of evidence.
+
+Using Bayes factors allows us to make nice computations of posterior weights.
 
 ## Loading the data
 
