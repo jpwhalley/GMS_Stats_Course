@@ -6,7 +6,7 @@ November 2019
 Authors: Luke Jostins, Gavin Band
 
 ##  Introduction
-The series of practicals today will introduce you to analyzing Genome Wide Association Study (GWAS) datasets using a program called PLINK, which is a freely available GWAS analysis toolkit. PLINK has many functions including those related to data organization, formatting, quality control, association testing, population stratification and much more. Details about PLINK and its documentation are available at the reference section at the end of these practicals.
+This practical will introduce you to analyzing Genome Wide Association Study (GWAS) datasets using a program called PLINK, which is a freely available GWAS analysis toolkit. PLINK has many functions including those related to data organization, formatting, quality control, association testing, population stratification and much more. Details about PLINK and its documentation are available at the reference section at the end of these practicals.
 
 We will use the chr19-example.vcf.gz/.samples files in the `4_Introduction_to_GWAS/GWAS_practical/` folder. These files have been simulated and do not represent any real data, but instead serve to illustrate important points in working with GWAS data. We will use PLINK commands in the terminal to perform analyses. We can use the text editor, spreadsheet and R to help interpret results. 
 
@@ -372,7 +372,7 @@ To make a hitplot we need to load data on all of these things.  To begin, make s
     data <- data[data$TEST == "ADD",]
 ```
 
-4.1 Loading the data
+### Loading the data
 
 We’ll start by getting plink to compute LD between the most-associated SNP in each of the strongest three association peaks and the other SNPs in the dataset.  First let’s identify what the top SNPs in each region are:
 
@@ -510,7 +510,7 @@ source( 'scripts/hitplot.R' )
 hitplot( 'rs112820994', data, genes, ld, margin = 200000 )
 ```
 
-Q. What gene is rs112820994 in?  Is it in an exon?  Are other top SNPs in the region also in genes?   (You may need to play around with the margin argument to zoom in or out of the plot.  You can cross-check using the genome browsers).
+Q. What gene is rs112820994 in?  Is it in an exon?  Are other top SNPs in the region also in genes?   (You may need to play around with the margin argument to zoom in or out of the plot.  You can cross-check using genome browsers such as the [UCSC Genome Browser]() or the [Ensembl Genome Browser]() - note that we are using GRCh37/hg19 coordinates).
 
 Q. Are there any obvious features near the boundaries of the region of associated SNPs?
 
@@ -527,8 +527,8 @@ Hints:
 snp138$func2 = NA
 snp138$func2[grep('intron',snp138$func)] = 'intron'
 snp138$func2[grep('splice-5',snp138$func)] = 'splice-5'
-```
 # …etc.
+```
 
 To cut down copy-pasting, you may want to turn the above into a loop.
 
@@ -536,7 +536,7 @@ To cut down copy-pasting, you may want to turn the above into a loop.
 
 3. The points() command can be used to overplot points on an existing plot.  Use the pch argument to specify shape.  (Only plot points that have func != 'none').
 
-4. pch takes argument that is a positive integer in the range 1-20, say (google for 'R shapes' to see a table of shapes).  One way to turn categories into integers for pch is to first convert them to a factor, e.g. 
+4. pch takes an argument that is a positive integer in the range 1-20, say (google for 'R shapes' to see a table of shapes).  One way to turn categories into integers for pch is to first convert them to a factor, e.g. 
 ```R
 data$func2 = factor(data$func2, levels = c( 'missense', 'nonsense', 'stop-gain', 'stop-loss', 'splice-3', 'splice-5', 'untranslated-3', 'untranslated-5', 'intron' )
 table( as.integer(data$func2) )
@@ -555,8 +555,6 @@ There is detailed documentation about all the options available, file formats an
 A detailed tutorial (similar to work we have done here) is available at:
 
 http://pngu.mgh.harvard.edu/~purcell/plink/tutorial.shtml
-
-
 
 
 
