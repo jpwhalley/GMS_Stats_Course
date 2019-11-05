@@ -88,8 +88,7 @@ If we look in the assoc file we will see that this SNP, rs8135996, is associated
 *Q*. And what does the odds ratio mean anyway?  If this is a disease trait, is it good news to have the 'G' allele?  Or to have the 'A' allele?  And how bad is it to have the risk allele?
 *Advanced Question*.  What does `ADD` mean in the output?  Can you figure out how to run a non-additive test?  Which mode of inheritance has the greatest evidence?
 
-## Forest plotting
-
+## Forest plotting
 If you followed the Statistical modelling module earlier, we argued that what you want is to summarise the likelihood by its maximum (here the log odds ratio) and its standard error - thus approximating the likelihood by a gaussian function.  How can you get this out of plink's output? Can you figure this out from the [documentation for --logistic](https://www.cog-genomics.org/plink/1.9/assoc#linear)?
 
 Here's my take: using `--logistic beta` makes plink output the regression estimate (log odds ratio) instead of the odds ratio.  Plink also outputs what turns out to be a Wald test P-value.  (See [the notes](https://github.com/jpwhalley/GMS_Stats_Course/blob/master/2_Statistical_Modelling/1_Introduction/notes/computing_pvalues.md) from Statistical Modelling I for a definition).
@@ -353,13 +352,19 @@ We have seen how applying appropriate quality control filters to our data elimin
 The file `chr19-example.pca` contains the principal components for this dataset (calculated in the previous practical), and the following command will carry out an association analysis controlling for these:
 
 ```sh
-$ ./plink --bfile chr19-clean --logistic beta --covar chr19-example.pca --out pccorrected-test --keep-allele-order --ci 0.95
+$ ./plink \
+--bfile chr19-clean \
+--logistic beta \
+--ci 0.95 \
+--covar chr19-example.pca \
+--out pccorrected-test \
+--keep-allele-order
 ```
 
 
 We have now produced an analysis corrected for population structure.   Congratulations!
 
-Note: On Thursday we will use the output from the above in a meta-analysis with data from other studies of the same phenotype.  To help with this, we've used a couple of options above that will make the output consistent across studies.  Firstly, as above we've used the --keep-allele-order option to make plink output odds ratios for the non-reference allele.  (By default it will output test statistics for the minor, i.e. less common allele, but that's problematic as it might vary between studies.)  We've also used the --ci option to tell plink to output a standard error along with the odds ratio.  We'll use these standard errors in the meta-analysis practical tomorrow. 
+*Note*: We've used a couple of options above that will make the output consistent across studies.  Firstly, as above we've used the --keep-allele-order option to make plink output odds ratios for the non-reference allele.  (By default it will output test statistics for the minor, i.e. less common allele, but that's problematic as it might vary between studies.)  We've also used the `--ci` option to tell plink to output a standard error along with the odds ratio.  These options are particularly useful if you are using the output in a meta-analysis with other studies.
 
 For now, let's use the text editor, spreadsheet and R (as in yesterday’s practicals) to examine these results.
 
