@@ -4,7 +4,7 @@
 ##  Introduction
 The series of practicals today will introduce you to analyzing Genome Wide Association Study (GWAS) datasets using a program called PLINK, which is a freely available GWAS analysis toolkit. PLINK has many functions including those related to data organization, formatting, quality control, association testing, population stratification and much more. Details about PLINK and its documentation are available at the reference section at the end of these practicals.
 
-We will use the chr19-example.vcf.gz/sample/fam and snp-example.ped/map/sample/fam files in the `4_Introduction_to_GWAS/GWAS_practical/` folder. These files have been simulated and do not represent any real data, but instead serve to illustrate important points in working with GWAS data. We will use PLINK commands in the terminal to perform analyses. We can use the text editor, spreadsheet and R to help interpret results. 
+We will use the chr19-example.vcf.gz/.samples files in the `4_Introduction_to_GWAS/GWAS_practical/` folder. These files have been simulated and do not represent any real data, but instead serve to illustrate important points in working with GWAS data. We will use PLINK commands in the terminal to perform analyses. We can use the text editor, spreadsheet and R to help interpret results. 
 
 Checkpoint questions in the practicals are shown in bold.  Please check you can answer these!
 
@@ -24,16 +24,17 @@ which runs the `ls` command.  (For avoidance of doubt - the $ is the command pro
 
 To get set up, you need
 
-- the dataset from the practical.
+- the datasets from the practical folder.
 - the command-line programs we'll use
 
-open a terminal and navigate to your workspace for the practical.  You can either work on the WHG compute cluster or, if you are happy to some of your own setup, on your own laptop.
+open a terminal and navigate to your workspace for the practical.  You can either work on the WHG compute cluster or, if you are happy to do your own setup, on your own laptop.
 
 ```sh
 	cd /path/to/working/folder/
 ```
 
-The practical dataset is available in the `4_Introduction_to_GWAS/GWAS_practical` folder in the github site: https://github.com/jpwhalley/GMS_Stats_Course/4_Introduction_to_GWAS/GWAS_practical.
+The practical dataset is available in the `4_Introduction_to_GWAS/GWAS_practical` folder in the github site: https://github.com/jpwhalley/GMS_Stats_Course/tree/master/4_Introduction_to_GWAS/GWAS_analysis_practical.
+You'll need everything including the `.vcf` and `.samples` files, and the `scripts/` and `resources/` folders.
 
 Second, let's get the plink program we need.  Navigate to `https://www.cog-genomics.org/plink/1.9/` and download the appropriate version.  Then move the plink executable into the top-level folder:
 ```sh
@@ -56,22 +57,22 @@ Plink will tell you its version, and when it was last updated.
 Plink is a tool for analysis of genome-wide genotype data.  A basic first task is to compute allele frequencies.  We can do that like this:
 
 ```sh
-./plink --freq  --vcf snp-example.vcf
+$ ./plink --freq  --vcf snp-example.vcf
 ```
 
 The `--freq` command asks PLINK to calculate allele frequencies. `--vcf snp-example.vcf` tells PLINK to read in data from the VCF file `snp-example.vcf`. 
 
-PLINK has written two output files in the directory we are working in, 1. a log file called `plink.log` that summarizes what it has done (this is the same as the output that appeared in the terminal window), and 2. `plink.frq`, which contains the allele frequency information. You can look at all input and output files in your text editor, or using UNIX commands like `less`.
+PLINK has written two output files in the directory we are working in, 1. a log file called `plink.log` that summarizes what it has done (this is the same as the output that appeared in the terminal window), and 2. `plink.frq`, which contains the allele frequency information. You can look at all input and output files in your text editor, using UNIX commands like `less`, or if preferred you can load them into R.
 
 *Q*. How many SNPs were in this dataset?  What are their names?  What are their allele frequencies?
 
 *Q*. How many samples are included in total?
 
-*Advanced Question*. The column names can be frankly somewhat cryptic (herein begins the black art of GWAS).  Can you find out what `NCHROBS` means from the documentation?  (You may find you need to look at the documentation for the original version of plink (http://zzz.bwh.harvard.edu/plink/summary.shtml).  On the other hand, looking at the documentation on https://www.cog-genomics.org/plink/1.9/, are there other / better `--freq`-like commands you can run?  What do they output?  Which version do you like?
+*Advanced Question*. The column names can be frankly somewhat cryptic.  Can you find out what `NCHROBS` means from the documentation?  (You may find you need to look at the documentation for the original version of plink (http://zzz.bwh.harvard.edu/plink/summary.shtml).  On the other hand, looking at the documentation on https://www.cog-genomics.org/plink/1.9/, are there other or better `--freq`-like commands you can run?  What do they output?  Which version do you like?
 
-A basic GWAS study works by running regression (usually linear regression for quantitative traits, or logistic regression for case/control traits) between each genetic variant in the genome and the phenotype of interest.  We can run our first tiny GWAS by running:
+A basic GWAS study begins by running regression (usually linear regression for quantitative traits, or logistic regression for case/control traits) between each genetic variant in the genome and the phenotype of interest.  We can run our first tiny GWAS by running:
 ```sh
-$ ./plink --vcf snp-example --logistic --pheno snp-example.samples --allow-no-sex
+$ ./plink --vcf snp-example.vcf --logistic --pheno snp-example.samples --allow-no-sex
 ```
 (The `--allow-no-sex` is needed when working with VCF files, to work around plink's default behaviour where it removes samples without a sex assignment).  Now PLINK has generated two files in the directory we are working in: `plink.log` and `plink.assoc.logistic`. The log file simply captures the status information that PLINK reports with each run.  The other gives the logistic regression output.
 *Q*. How many cases and controls are included in this data?
@@ -157,6 +158,12 @@ The key files are `chr19-example.vcf.gz` and `chr19-example.samples`.
 
 https:www.well.ox.ac.uk/~gav/resources/chr19-example.vcf.gz
 
+You can download it manually or, on the cluster, the command:
+```sh
+$ wget https:www.well.ox.ac.uk/~gav/resources/chr19-example.vcf.gz
+```
+should download it.
+
 As we saw above, we can convert these to files PLINK can read:
 ```sh
 $ ./plink --make-bed --vcf chr19-example.vcf.gz --pheno chr19-example.samples --update-sex chr19-example.samples  2 --out chr19-example --keep-allele-order
@@ -200,8 +207,8 @@ You can save a picture of this analysis for later reference:
 
 ```R
 # In R:
-png("HetHist.png")
-hist(HetData$F,breaks=100)
+png( "HetHist.png" )
+hist( HetData$F, breaks=100 )
 dev.off()
 ```
 
@@ -267,9 +274,9 @@ Read this new dataset into R (as above) and look at the plot of association p-va
 ```R
 #In R:
 data<-read.table( "clean-test.assoc.logistic", h=T )
-plot( data$BP,-log(data$P)/log(10),ylim=c(0,15) )
+plot( data$BP, -log10(data$P), ylim=c(0,15) )
 png( "clean-association.png")
-plot( data$BP,-log(data$P)/log(10),ylim=c(0,15) )
+plot( data$BP, -log10(data$P), ylim=c(0,15) )
 dev.off()
 ``
 How has cleaning the data affected our signals of association? What does that imply about the associations seen in the previous analysis?
@@ -280,17 +287,23 @@ In addition to using data cleaning to remove strong false positive associations,
 # In R:
 median(data$P)
 
-expected <- -log10( seq(0,1-1/length(data$P), by=1/length(data$P)))
+expected <- -log10(
+    seq(0,1-1/length(data$P), by=1/length(data$P))
+)
 
-plot(expected,-log10(sort(data$P)))
-abline(0,1)
-png("clean-qq.png")
-plot(expected,-log10(sort(data$P)))
-abline(0,1)
+plot( expected, -log10(sort(data$P)) )
+abline(a = 0, b = 1)
+
+# Save it in a file
+png( "clean-qq.png" )
+plot( expected, -log10(sort(data$P)) )
+abline(a = 0, b = 1)
 dev.off()
 ```
 
-This figure is called a Q-Q plot a(her applied to -log10 P-values) and it can be very useful in evaluating GWAS data for systematic bias.
+This figure is called a Q-Q plot (here applied to -log10 P-values) and it can be very useful in
+evaluating GWAS data for systematic bias. It compares the empirical distribution of values against
+the expected distribution if drawn from a uniform distribution.
 
 The expected median p-value is 0.5. The diagonal line shows where the points should fall if the null hypothesis that there are no association signals were true at most SNPs.
 
@@ -319,7 +332,7 @@ Note that the output file “pccorrected-test.assoc.logistic” contains informa
 
 ```R
 # In R:
-data<-read.table("pccorrected-test.assoc.logistic",h=T)
+data<-read.table( "pccorrected-test.assoc.logistic", header = T )
 data <- data[data$TEST == "ADD",]
 ```
 
@@ -351,7 +364,7 @@ To make a hitplot we need to load data on all of these things.  To begin, make s
 
 ```R
 # In R:
-    data<-read.table("pccorrected-test.assoc.logistic",h=T)
+    data<-read.table( "pccorrected-test.assoc.logistic", header = T )
     data <- data[data$TEST == "ADD",]
 ```
 
@@ -392,7 +405,7 @@ View(ld)
 Now let's load the other data we need.  First, we'll load information on genes from the file `resources/refGene_chr19.txt` (which comes from the UCSC Genome browser):
 
 ```R
-genes <- read.table("resources/refGene_chr19.txt", hea=T, as.is=T)
+genes <- read.table( "resources/refGene_chr19.txt.gz", header=T, as.is=T )
 View(genes)
 ```
 
@@ -412,7 +425,7 @@ source( 'scripts/plot.genes.R' )
 Next we'll load recombination rate estimates from the HapMap project:
 
 ```R
-genetic_map <- read.table( "resources/genetic_map_chr19_combined_b37.txt", hea=T, as.is=T )
+genetic_map <- read.table( "resources/genetic_map_chr19_combined_b37.txt.gz", hea=T, as.is=T )
 View( genetic_map )
 ```
 
@@ -452,10 +465,11 @@ Beautiful!  But not beautiful enough.  Let's refine it.
 
 ### Refining the hitplot
 Now we'll make several modifications to make the plot really publication-ready.  First we'll colour points using the binned r2 values we loaded earlier.  (We use the heat.colors() function to generate a nice palette for this).
-In R:
+```R
 region.ld = ld[ ld$SNP_A == focus.snp & ld$BP_B >= region[1] & ld$BP_B <= region[2] & !is.na( ld$R2_bin ), ]
 data$colour = "black"
 data$colour[ match( region.ld$SNP_B, data$SNP ) ] = heat.colors(10)[ as.integer( region.ld$R2_bin ) ]
+```
 
 We can plot using these colours like this:
 
@@ -469,11 +483,19 @@ plot( data$BP, -log10( data$P ), col = data$colour, pch = 20, xlim = region, xla
 It's also helpful to provide a legend.  The legend() command can be used to add one to the plot.  A legend with helpful labels is:
 
 ```R
-legend( "topright", col=c("black",heat.colors(10)), pch = 20, legend = c( "r?<0.1", sprintf( "r?≥%.1f",seq(0.1,0.9,by=0.1 ))))
+legend(
+    "topright",
+    col=c("black",heat.colors(10)),
+    pch = 20,
+    legend = c(
+        "r²<0.1",
+        sprintf( "r²≥%.1f",seq(0.1,0.9,by=0.1 ))
+    )
+)
 ```
 
 We can also add a grid to let viewers locate points better:
-```
+```R
 grid()
 ```
 
@@ -481,7 +503,7 @@ We have wrapped up the above code - with a few more cosmetic tweaks - into a fun
 
 ```R
 source( 'scripts/hitplot.R' )
-hitplot('rs112820994', data, genes, ld, margin = 200000 )
+hitplot( 'rs112820994', data, genes, ld, margin = 200000 )
 ```
 
 Q. What gene is rs112820994 in?  Is it in an exon?  Are other top SNPs in the region also in genes?   (You may need to play around with the margin argument to zoom in or out of the plot.  You can cross-check using the genome browsers).
@@ -518,7 +540,8 @@ table( as.integer(data$func2) )
 
 5. You also need a legend!
 
-Reference Information
+## Reference Information
+
 You can download PLINK, and find much more information at the website:
 
 https://www.cog-genomics.org/plink2
