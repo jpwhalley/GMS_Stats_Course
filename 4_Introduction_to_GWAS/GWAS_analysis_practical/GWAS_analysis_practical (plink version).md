@@ -37,19 +37,21 @@ open a terminal and navigate to your workspace for the practical.  You can eithe
 	cd /path/to/working/folder/
 ```
 
+If you are using one of the workshop training logins, the path will be `/well/workshop/workshop<N>` if you are logged in as `workshop<N>`.
+
 The practical dataset is available in the `4_Introduction_to_GWAS/GWAS_practical` folder in the github site: https://github.com/jpwhalley/GMS_Stats_Course/tree/master/4_Introduction_to_GWAS/GWAS_analysis_practical.
-You'll need everything including the `.vcf` and `.samples` files, and the `scripts/` and `resources/` folders.
+You'll need to download everything, including the `.vcf` and `.samples` files, and the `scripts/` and `resources/` folders.
 
 Second, let's get the plink program we need.  Navigate to `https://www.cog-genomics.org/plink/1.9/` and download the appropriate version.  Then move the plink executable into the top-level folder:
 ```sh
 $ mv plink_[version]/plink ./
 ```
-On the WHG cluster you can instead copy it from `/apps/well` (which contains many useful applications compliled for the cluster):
+If you are using the WHG cluster you should instead be able to copy it from `/apps/well` (which contains many useful applications compliled for the cluster):
 ```sh
 cp /apps/well/plink/1.90b3/plink ./
 ```
 
-If all is well you should be able to run plink like this:
+If all is well you should now be able to run plink like this:
 ```sh
 ./plink –-version
 ```
