@@ -74,7 +74,7 @@ weights = matrix(
 
 This prior weighting means there is more weight on (say) the single model of all traits, than there is on each of the 7 models of association with a single trait, or the (7 choose k) models of association with k traits (1 < k < 7).
 
-This function is used to compute prior matrices for any given prior from the above tablne:
+This function is used to compute prior matrices for any given prior from the above table:
 ```
 compute.prior.matrix <- function( row, rho = 0.9, sd = 0.2 ) {
     prior = matrix( 0, 7, 7 )
