@@ -3,6 +3,8 @@
 
 November 2019
 
+Authors: Luke Jostins, Gavin Band
+
 ##  Introduction
 The series of practicals today will introduce you to analyzing Genome Wide Association Study (GWAS) datasets using a program called PLINK, which is a freely available GWAS analysis toolkit. PLINK has many functions including those related to data organization, formatting, quality control, association testing, population stratification and much more. Details about PLINK and its documentation are available at the reference section at the end of these practicals.
 
