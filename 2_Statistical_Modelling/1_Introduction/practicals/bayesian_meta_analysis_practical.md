@@ -1,10 +1,11 @@
 # Bayesian meta-analysis practical
 
-We use a Bayesian approach to meta-analysis across traits.
-This considers all models of association with one trait, with two traits, and so on up to all traits.  It uses Bayes Factors to compute relative strengths of evidence.
-
 We use data from Cotsapas et al PLoS Genetics (2011) https://doi.org/10.1371/journal.pgen.1002254
-Data is effect size estimates and standard errors for 107 SNPs and 7 autoimmune traits.
+Data is effect size estimates and standard errors for 107 SNPs and 7 autoimmune traits.  We'd like to know - to what extent are genetic effects shared across these traits?
+
+To answer this we'll use a Bayesian approach to meta-analysis across traits.  This considers all models of association with one trait, with two traits, and so on up to all traits.  It uses Bayes Factors to compute relative strengths of evidence.
+
+Using Bayes factors allows us to make nice computations of posterior weights.
 
 ## Loading the data
 
@@ -20,15 +21,16 @@ phenotypes = gsub( ".beta", "", grep( ".beta", colnames( cotsapas ), value = T )
 
 ## Computing Bayes factors
 
-According to the 'Crucial Lemma' for multivariate normals shown in lectures, the product of an MVN
+According to the 'Crucial Lemma' for multivariate normals shown in lectures (see [here](https://github.com/jpwhalley/GMS_Stats_Course/blob/master/2_Statistical_Modelling/1_Introduction/notes/Computing%20BFs%20using%20the%20normal%20approximation.pdf)), the product of an MVN
 prior and an MVN likelihood is equal to an MVN multiplied by a constant. And the constant is itself
 computable by MVN evaluated at the effect size estimate.
 
-We use the `mvtnorm` package to compute this for any given model (specificed as a 7x7 prior covariance matrix) against the null model (under which all true effects are zero).
+We use the `mvtnorm` package to compute this for any given model, specificed as a 7x7 prior covariance matrix, against the null model under which all true effects are zero.
 
 (This function additionally deals with missing beta estimates).
 
 ```R
+library( mvtnorm )
 compute.bf <- function( betas, ses, prior ) {
     w = which( !is.na( betas ))
     dmvnorm(
@@ -73,7 +75,7 @@ weights = matrix(
 
 This prior weighting means there is more weight on (say) the single model of all traits, than there is on each of the 7 models of association with a single trait, or the (7 choose k) models of association with k traits (1 < k < 7).
 
-This function is used to compute prior matrices for any given prior from the above tablne:
+This function is used to compute prior matrices for any given prior from the above table:
 ```
 compute.prior.matrix <- function( row, rho = 0.9, sd = 0.2 ) {
     prior = matrix( 0, 7, 7 )
