@@ -1,10 +1,12 @@
 # On methods of computing P-values
 
-In lectures we covered the 'asymptotic normality' property of likelihoods, to wit\
+In lectures we covered the 'asymptotic normality' property of likelihoods, to wit:
 
 - as data quantities grow, the loglikelihood becomes approximately quadratic, i.e. the likelihood becomes approximately normal.  So it can be represented by its mode (the maximum likelihood estimate β̂) and its curvature i.e. 2nd derivative at the mode.
 - If β₀ is the 'true' value of the parameter β, then β̂ becomes asymptotically normally distributed around β₀.
 - Moreover, the asymptotic curvature (or variance-covariance) is the same in both cases.  It can be approximated as I = -H⁻¹ if H is the second derivative of the loglikelihood.
+
+For more on the asymptotics of the mle see [Efron & Hastie](https://web.stanford.edu/~hastie/CASI_files/PDF/casi.pdf) Chapter 4.
 
 ## How this is used in practice.
 
