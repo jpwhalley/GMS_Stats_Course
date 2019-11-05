@@ -151,7 +151,7 @@ $ ./plink \
 When we analyze real data, we won’t always have the files in VCF. Instead, a variety of other formats are used - in particular, binary formats are often used for efficiency reasons.
 PLINK can read in many of these file formats.
 
-In our example we gave plink two files, snp-example.vcf and snp-example.samples. If you look at the snp-example.samples in a text editor, you will see a list of sample names (“sample1”, “sample2”, etc), followed by a few numbers. The first number is the case-control status of the sample (1 means unaffected, 2 means affected), the second is the the sex of the sample (1 means male, 2 means female). The other file, snp-example.vcf, is in the VCF format that we saw in the Public Resources lecture, and contains the genotypes for each sample. You can look at the file in a text editor, but you might find it hard to read. 
+In our example we gave plink two files, snp-example.vcf and snp-example.samples. If you look at the snp-example.samples in a text editor, you will see a list of sample names (“sample1”, “sample2”, etc), followed by a few numbers. The first number is the case-control status of the sample (1 means unaffected, 2 means affected), the second is the the sex of the sample (1 means male, 2 means female). The other file, snp-example.vcf, is in the famous [VCF format](https://samtools.github.io/hts-specs/VCFv4.2.pdf) that is widely used for sharing genetics data, and contains the genotypes for each sample. You can look at the file in a text editor, though you might find it hard to read.
 
 We can use PLINK to convert these files to plink's native format.  This is a binary format called BED:
 
@@ -164,14 +164,14 @@ $ ./plink \
 --out snp-example-recode
 ```
 
-Here we are using the command “--recode" to rewrite the data into a new format. `--vcf snp-example.vcf` tells it to read the genotypes from the VCF file, `--pheno snp-example.samples` tells Plink to take the phenotypes from the sample file, and `--update-sex snp-example.sex 2` tells it to take gender information from the second column of the sample. Finally, `--out snp-example-recode` tells PLINK the prefix to use when writing the new files.
+Here we are using the command `--recode` to rewrite the data into a new format. `--vcf snp-example.vcf` tells it to read the genotypes from the VCF file, `--pheno snp-example.samples` tells Plink to take the phenotypes from the sample file, and `--update-sex snp-example.sex 2` tells it to take gender information from the second column of the sample. Finally, `--out snp-example-recode` tells PLINK the prefix to use when writing the new files.
 You can see that we have now made `snp-example-recode.bed`, `snp-example-recode.fam`, and `snp-example-record.bim` files that are in the binary format PLINK expects.  
 
 Unlike the human-readable text .vcf file we used before, these data are in “binary ped” format (.bed). This format is a compressed format which saves space and speeds up analysis. Information on samples can be found in the .fam file and information on SNPs in the .bim file. 
 
 *Q*. Look at the documentation for these files.  Check you understand what is in each one.
 
-1a:  Quality Control Practical
+##  Quality Control Practical
 We will now work with a set of data files containing many SNPs from chromosome 19 genotyped on controls and cases.  Data from a GWAS would contain SNPs at this density across the entire genome, but we will focus on just one chromosome to make the exercises more tractable.
 
 The key files are `chr19-example.vcf.gz` and `chr19-example.samples`.
@@ -184,22 +184,27 @@ You can download it manually or, on the cluster, the command:
 ```sh
 $ wget https:www.well.ox.ac.uk/~gav/resources/chr19-example.vcf.gz
 ```
-should download it.
+will download it.
 
 As we saw above, we can convert these to files PLINK can read:
 ```sh
-$ ./plink --make-bed --vcf chr19-example.vcf.gz --pheno chr19-example.samples --update-sex chr19-example.samples  2 --out chr19-example --keep-allele-order
+$ ./plink --make-bed \
+--vcf chr19-example.vcf.gz \
+--pheno chr19-example.samples \
+--update-sex chr19-example.samples 2 \
+--out chr19-example \
+--keep-allele-order
 ```
-Like the test files above, these files contain information about the samples and SNPs, as well as the genotypes for each of the samples at each of the SNPs. We've used the --keep-allele-order option here to make sure plink preserves the two alleles at each SNP in the same order as in the VCF file (important if we want to keep track of effect direction).
+Like the test files above, these files contain information about the samples and SNPs, as well as the genotypes for each of the samples at each of the SNPs. We've used the `--keep-allele-order` option here to make sure plink preserves the two alleles at each SNP in the same order as in the VCF file (important if we want to keep track of effect direction).
 
 We can load data in the binary plink format using the --bfile option. For instance, to calculate allele frequencies we use:
 
 ```sh
 $ ./plink --bfile chr19-example --freq
 ```
-Q. How many SNPs and samples are in this dataset?
+*Q.* How many SNPs and samples are in this dataset?
 
-Note: Many other formats are in use for genetic data, including 'GEN' format, ['BGEN' format](http://www.bgenformat.org), and BCF (binary VCF) format. 
+Note: Many other formats are in use for genetic data, including 'GEN' format, ['BGEN' format](http://www.bgenformat.org), and BCF (binary VCF) format.  (Learning how to deal with these is part of the job description.)
 
 There are many different QC metrics that we can calculate for our dataset. These metrics can tell us about the quality of loci (i.e. SNPs), and of samples. For instance, we can calculation information about missingness:
 
@@ -209,7 +214,7 @@ There are many different QC metrics that we can calculate for our dataset. These
 
 This will produce a .imiss file with information about individuals and .lmiss with information about loci (SNPs). You can load this output into a spreadsheet program to look at it in more detail: In the directory browser right-click miss-info.lmiss file.  Select open in Libreoffice Calc or choose other application to select Libreoffice Calc.  An options window will open and in the Separator options you need to ensure that only 'separated by space' and the 'merge delimiters' boxes are checked before proceeding!
 
-Q. Which SNP has the highest missing rate?
+*Q.* Which SNP has the highest missing rate?
 
 Another QC metric is sample heterozygosity:
 
@@ -220,7 +225,8 @@ We can use R to visualize these results. Launch R as in previous practicals. Com
 
 ```R
 # In R:
-setwd('<path to practical folder>')
+# NB. Make sure you are in the same folder as your practical!
+# Use setwd() in R or the Session->Set Working Directory option in RStudio.
 HetData <- read.table( "het-info.het", h=T )
 hist( HetData$F, breaks=100 )
 ```
@@ -255,11 +261,18 @@ write.table( qcFails, quote=F, row.names=F, col.names=F, file="qcFails.txt" )
 We can combine this list with other quality control metrics (described in the lectures) to create a clean dataset (note that although we need to break long commands in this document over two lines, all options should be typed on one continuous line in the terminal without breaks):
 
 ```sh
-$ ./plink --bfile chr19-example --remove qcFails.txt --hwe 1e-4 include-nonctrl --geno 0.01 --maf 0.01 --make-bed --out chr19-clean --keep-allele-order
+$ ./plink \
+--bfile chr19-example \
+--remove qcFails.txt \
+--hwe 1e-4 include-nonctrl \
+--geno 0.01 \
+--maf 0.01 \
+--make-bed \
+--out chr19-clean \
+--keep-allele-order
 ```
 
-Q. What filters have we applied here? (the PLINK website can help explain these options)
-
+*Q.* What filters have we applied here? (the PLINK website can help explain these options)
 
 # Association Practical
 Now we will test for association between the SNPs in our dataset and malaria. Basic association tests can be done as follows:
@@ -269,8 +282,7 @@ $ ./plink --bfile chr19-example --logistic beta --out basic-test --keep-allele-o
 ```
 
 Load these results in the spreadsheet program to investigate them further.
-Q. How many SNPs are associated? Is this what you expect?
-Q. Why?  Why not?
+*Q*. How many SNPs are associated? Is this what you expect? Why?
 
 We can again use R to visualize these data.  First make sure you are in the correct practical folder:
 
@@ -329,9 +341,9 @@ the expected distribution if drawn from a uniform distribution.
 
 The expected median p-value is 0.5. The diagonal line shows where the points should fall if the null hypothesis that there are no association signals were true at most SNPs.
 
-Q. Given this information, what can you infer about our current association analysis?
+*Q*. Given this information, what can you infer about our current association analysis?
 
-Q. Using the PLINK website, can you identify how to run more general tests of association (beyond the basic test we’ve done already)?
+*Q*. Using the PLINK website, can you identify how to run more general tests of association (beyond the basic test we’ve done already)?
 
 
 ## Population Structure Practical
@@ -358,17 +370,17 @@ data<-read.table( "pccorrected-test.assoc.logistic", header = T )
 data <- data[data$TEST == "ADD",]
 ```
 
-Q. Has stratifying by disease group corrected our inflation?
+*Q.* Has stratifying by disease group corrected our inflation?
 
-Q. Are there any disease associations in this dataset?
+*Q.* Are there any disease associations in this dataset?
 
-Q. How are the QC statistics for any associated SNPs? Do you believe these associations?
+*Q.* How are the QC statistics for any associated SNPs? Do you believe these associations?
 
-Q. Can you find out anything about the function of these associated SNPs, using the tools you learned about in the Public Resources practical?
+*Q.* Can you find out anything about the function of these associated SNPs, using the tools you learned about in the Public Resources practical?
 
-Q. What could explain differences in association p-values in the different analyses we’ve done?
+*Q.* What could explain differences in association p-values in the different analyses we’ve done?
 
-Q. Produce Q-Q plots, genome-wide p-value plots and a summary of your results.
+*Q.* Produce Q-Q plots, genome-wide p-value plots and a summary of your results.
 
 
 ## Making a regional association plot
@@ -528,15 +540,15 @@ source( 'scripts/hitplot.R' )
 hitplot( 'rs112820994', data, genes, ld, margin = 200000 )
 ```
 
-Q. What gene is rs112820994 in?  Is it in an exon?  Are other top SNPs in the region also in genes?   (You may need to play around with the margin argument to zoom in or out of the plot.  You can cross-check using genome browsers such as the [UCSC Genome Browser]() or the [Ensembl Genome Browser]() - note that we are using GRCh37/hg19 coordinates).
+*Q.* What gene is rs112820994 in?  Is it in an exon?  Are other top SNPs in the region also in genes?   (You may need to play around with the margin argument to zoom in or out of the plot.  You can cross-check using genome browsers such as the [UCSC Genome Browser]() or the [Ensembl Genome Browser]() - note that we are using GRCh37/hg19 coordinates).
 
-Q. Are there any obvious features near the boundaries of the region of associated SNPs?
+*Q.* Are there any obvious features near the boundaries of the region of associated SNPs?
 
-Q. Make a similar plot for each of the other regions we computed LD for above.  Do they look similar?  Is there anything odd about them?
+*Q.* Make a similar plot for each of the other regions we computed LD for above.  Do they look similar?  Is there anything odd about them?
 
-Q. Having looked at the variants in the genome browser – what other genomic features would you add to the hitplot if you had time?  How would you add these?
+*Q.* Having looked at the variants in the genome browser – what other genomic features would you add to the hitplot if you had time?  How would you add these?
 
-Q. (Challenge question – only try this if you've got time). In the sample folder there's a file called "resources/snp138_chr19.txt.gz" containing information from dbSNP on variants in each region.  Load this in using read.table(). (You'll need to add the sep='\t' option to make it look for tab separators - type ?read.table for help.)  The column called 'func' lists putative functional consequences of each variant.  The challenge is to create a version of the hit plot that overplots different shapes to show the functional annotation.
+*Q.* (Challenge question – only try this if you've got time). In the sample folder there's a file called "resources/snp138_chr19.txt.gz" containing information from dbSNP on variants in each region.  Load this in using read.table(). (You'll need to add the sep='\t' option to make it look for tab separators - type ?read.table for help.)  The column called 'func' lists putative functional consequences of each variant.  The challenge is to create a version of the hit plot that overplots different shapes to show the functional annotation.
 
 Hints:
 1. The 'func' column in snp138 contains many categories and you'll first need to simplify it for plotting.  One way is to take the most 'severe' category for each SNP.  A rough list of useful categories might be: missense, nonsense, stop-gain, stop-loss, splice-3, splice-5, untranslated-3, untranslated-5, intron.  E.g. the following code shows how to make a simpler variable func2:
