@@ -138,9 +138,14 @@ Congratulations!  This is your first GWAS forest plot (albeit with only one row)
 The final step in this introduction is to learn to rename PLINK’s output files, since we’ll be generating lots of them in the practicals.
 
 ```sh
-$ ./plink --vcf snp-example.vcf --logistic beta --pheno snp-example.samples --allow-no-sex --out getting-started
+$ ./plink \
+--vcf snp-example.vcf \
+--logistic beta \
+--pheno snp-example.samples \
+--allow-no-sex \
+--out getting-started
 ```
-Now the output files will be named getting-started.log and getting-started.assoc.logistic. This is the basic pattern to working with PLINK: specifying input files and analyses, along with an output name to save results.
+(The backslashes here are shell line continuation characters - they let us put the command on multiple lines).  Now the output files will be named getting-started.log and getting-started.assoc.logistic. This is the basic pattern to working with PLINK: specifying input files and analyses, along with an output name to save results.
 
 ## Reading files in a different format
 When we analyze real data, we won’t always have the files in VCF. Instead, a variety of other formats are used - in particular, binary formats are often used for efficiency reasons.
@@ -151,7 +156,12 @@ In our example we gave plink two files, snp-example.vcf and snp-example.samples.
 We can use PLINK to convert these files to plink's native format.  This is a binary format called BED:
 
 ```sh
-$ ./plink --make-bed --vcf snp-example.vcf --pheno snp-example.samples --update-sex snp-example.samples 2 --out snp-example-recode
+$ ./plink \
+--make-bed \
+--vcf snp-example.vcf \
+--pheno snp-example.samples \
+--update-sex snp-example.samples 2 \
+--out snp-example-recode
 ```
 
 Here we are using the command “--recode" to rewrite the data into a new format. `--vcf snp-example.vcf` tells it to read the genotypes from the VCF file, `--pheno snp-example.samples` tells Plink to take the phenotypes from the sample file, and `--update-sex snp-example.sex 2` tells it to take gender information from the second column of the sample. Finally, `--out snp-example-recode` tells PLINK the prefix to use when writing the new files.
