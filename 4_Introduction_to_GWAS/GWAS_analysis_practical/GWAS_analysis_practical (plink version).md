@@ -34,7 +34,7 @@ To get set up, you need
 open a terminal and navigate to your workspace for the practical.  You can either work on the WHG compute cluster or, if you are happy to do your own setup, on your own laptop.
 
 ```sh
-	cd /path/to/working/folder/
+$ cd /path/to/working/folder/
 ```
 
 If you are using one of the workshop training logins, the path will be `/well/workshop/workshop<N>` if you are logged in as `workshop<N>`.
@@ -48,12 +48,12 @@ $ mv plink_[version]/plink ./
 ```
 If you are using the WHG cluster you should instead be able to copy it from `/apps/well` (which contains many useful applications compliled for the cluster):
 ```sh
-cp /apps/well/plink/1.90b3/plink ./
+$ cp /apps/well/plink/1.90b3/plink ./
 ```
 
 If all is well you should now be able to run plink like this:
 ```sh
-./plink –-version
+$ ./plink –-version
 ```
 
 Plink will tell you its version, and when it was last updated.  
@@ -209,7 +209,7 @@ Note: Many other formats are in use for genetic data, including 'GEN' format, ['
 There are many different QC metrics that we can calculate for our dataset. These metrics can tell us about the quality of loci (i.e. SNPs), and of samples. For instance, we can calculation information about missingness:
 
 ```sh
-./plink --bfile chr19-example --missing --out miss-info
+$ ./plink --bfile chr19-example --missing --out miss-info
 ```
 
 This will produce a .imiss file with information about individuals and .lmiss with information about loci (SNPs). You can load this output into a spreadsheet program to look at it in more detail: In the directory browser right-click miss-info.lmiss file.  Select open in Libreoffice Calc or choose other application to select Libreoffice Calc.  An options window will open and in the Separator options you need to ensure that only 'separated by space' and the 'merge delimiters' boxes are checked before proceeding!
