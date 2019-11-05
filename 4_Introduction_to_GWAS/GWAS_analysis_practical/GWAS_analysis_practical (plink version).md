@@ -388,8 +388,7 @@ data <- data[data$TEST == "ADD",]
 
 *Q.* Produce Q-Q plots, genome-wide p-value plots and a summary of your results.
 
-**When you've reached this part of the practical, please email me (Gavin) with the word "QQPLOT".**.
-
+**When you've reached this part of the practical, please email your qq plot to me (Gavin).**
 
 ## Making a regional association plot
 
