@@ -24,11 +24,12 @@ According to the 'Crucial Lemma' for multivariate normals shown in lectures (see
 prior and an MVN likelihood is equal to an MVN multiplied by a constant. And the constant is itself
 computable by MVN evaluated at the effect size estimate.
 
-We use the `mvtnorm` package to compute this for any given model (specificed as a 7x7 prior covariance matrix) against the null model (under which all true effects are zero).
+We use the `mvtnorm` package to compute this for any given model, specificed as a 7x7 prior covariance matrix, against the null model under which all true effects are zero.
 
 (This function additionally deals with missing beta estimates).
 
 ```R
+library( mvtnorm )
 compute.bf <- function( betas, ses, prior ) {
     w = which( !is.na( betas ))
     dmvnorm(
