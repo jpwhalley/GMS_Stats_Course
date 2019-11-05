@@ -11,6 +11,7 @@ In lectures we covered the 'asymptotic normality' property of likelihoods, to wi
 In lectures we considered a logistic regression fit:
 
 ```R
+    > X = read.csv( 'practicals/logistic_regression_data.csv', header = T, as.is = T )
     > fit = glm( outcome ~ predictor + covariate1 + covariate2, family="binomial", data =X )
     > summary(fit)$coeff
                    Estimate Std. Error    z value     Pr(>|z|)
@@ -36,7 +37,9 @@ Note that even though we are talking about a distribution under the null model, 
 
 ## What does this mean?
 
-The P-value is a statement of how unlikely an observed effect of the magnitude of β̂ would be, if the null model β = 0 were true.  Of course, that model is never literally true, and 
+The P-value is a statement of how unlikely an observed effect of the magnitude of β̂ would be, if the null model β = 0 were true.  Of course, that model is never literally true, but in some situations it does make sense to think of effects that way.
+
+One such case might be Genome-wide association studies of some traits, in which most of the genome is not associated with the trait but a few genetic variants across the genome have substantial effects.  (Severe malaria seems to be one example of a trait like this and there are arguments that this picture is pervasive.)  However, what we'd really like to do, if we could, is to model the full spectrum of effect sizes.
 
 ## Other ways to compute a p-value
 
