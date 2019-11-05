@@ -93,8 +93,14 @@ If you followed the Statistical modelling module earlier, we argued that what yo
 
 Here's my take: using `--logistic beta` makes plink output the regression estimate (log odds ratio) instead of the odds ratio.  Plink also outputs what turns out to be a Wald test P-value.  (See [the notes](https://github.com/jpwhalley/GMS_Stats_Course/blob/master/2_Statistical_Modelling/1_Introduction/notes/computing_pvalues.md) from Statistical Modelling I for a definition).
 
-If you know this, you can use it to work out the standard error - for example in R code:
+If you know this, you can use it to work out the standard error.  For example:
+
+```sh
+$ ./plink --vcf snp-example.vcf --logistic --pheno snp-example.samples --allow-no-sex
+```
+And then using R:
 ```R
+# in R
 X = read.table( "plink.assoc.logistic", hea=T, as.is=T )
 beta = X$BETA  # use log(X$OR) if you ran without the `beta` modifier
 P = X$P
