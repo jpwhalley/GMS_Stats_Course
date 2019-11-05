@@ -131,7 +131,7 @@ plot.betas( beta, se )
 ```
 Congratulations!  This is your first GWAS forest plot (albeit with only one row).
 
-()*Note*: I think the `--ci` option also makes plink output the standard errors.)
+(*Note*: I think adding the `--ci 0.95` option to the plink command line also makes plink output the standard errors.)
 
 ## 
 
