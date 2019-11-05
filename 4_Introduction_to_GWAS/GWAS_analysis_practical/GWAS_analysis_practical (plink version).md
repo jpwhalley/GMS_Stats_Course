@@ -430,8 +430,11 @@ $ ./plink \
 --ld-window 10000 \
 --ld-window-kb 1000000 \
 --ld-window-r2 0.05 \
---ld-snps rs57558361 rs376047 rs112820994
+--ld-snps rs57558361 rs376047 rs112820994 \
+--threads 1
 ```
+
+(We've added `--threads 1` to this command to make sure plink doesn't use lots of threads.  This doesn't matter on a personal laptop, but we don't want plink to use up all the resources on the shared cluster node.)
 
 This command says to compute pairwise r2 and D’ statistics between the three lead SNPs and all other SNPs within a window around them.  Only SNPs with r2>0.05 will appear in the output file.  (We’ve restricted the computation to control samples.  If these are population controls then we are estimating LD in the population).  Let’s load the result into our R session:
 
