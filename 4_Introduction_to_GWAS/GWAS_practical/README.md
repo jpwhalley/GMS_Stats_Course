@@ -1,1 +1,1 @@
-This folder contains the scripts required for practical session.
+This folder contains the scripts and some of the data required for the practical session.
