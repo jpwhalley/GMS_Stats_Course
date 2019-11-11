@@ -16,5 +16,5 @@ This folder contains the scripts and some of the data required for the practical
   
   **snps.for.sexdiff.lst**
    
-    List of SNPs to be tested for sex dimorphism.
+   List of SNPs to be tested for sex dimorphism.
  
