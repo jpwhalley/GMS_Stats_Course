@@ -34,7 +34,7 @@ Session 4 (14:00-16:30): Practical
 2.	https://portals.broadinstitute.org/collaboration/giant/images/9/97/Whradjbmi.giant-ukbb.meta-analysis.females.23May2018.HapMap2_only.txt.gz
 3.	https://portals.broadinstitute.org/collaboration/giant/images/7/71/Whradjbmi.giant-ukbb.meta-analysis.males.23May2018.HapMap2_only.txt.gz
 
-4.	From GMS github:
+4.	From GMS github (/GWAS_practical/):
 
     a.	regions.for.credible.sets.txt
 
