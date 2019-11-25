@@ -9,8 +9,8 @@ Please have R latest version installed, and please download the dataset provided
 
 Timetable
 ---------
-Day 1: Shrinkage of maximum likelihood estimates 
-       Chip heritability 
+Day 1: Shrinkage of maximum likelihood estimates \n
+       Chip heritability \n
        
-Day 2:  Genetic prediction of phenotypes
+Day 2:  Genetic prediction of phenotypes \n
         Estimation and significance testing of specific genetic variants' effects on phenotypes
