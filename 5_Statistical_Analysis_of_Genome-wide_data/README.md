@@ -3,7 +3,8 @@ GMS Statistical Analysis of Genome-wide data
 
 Required Software/Data
 ----------------------
-Please have R latest version installed, and please download the dataset provided (will be uploaded shortly).
+Please have R latest version installed, and please download the dataset provided.
+Please also try to install the R package 'mvtnorm'.
 
 
 
