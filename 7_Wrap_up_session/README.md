@@ -9,8 +9,8 @@ talks = list(
 	Jennifer = "Gibbs sampling",
 	Lino = "Statistical methods for analysing hierarchical phenotype data",
 	Minette = "Bayes Theorem",
-	Nina = "Associating endometriosis and immunological diseases using population-scale health records",
 	Samvida = "Mendelian randomisation",
+	Nina = "Associating endometriosis and immunological diseases using population-scale health records",
 	Emine = "Topic modelling and clustering for scATAC-seq data",
 	Jiayuan = "Fine-mapping"
 )
