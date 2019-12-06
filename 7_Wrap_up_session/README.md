@@ -36,12 +36,15 @@ initialProbs = c( GMS = 1, 'non-GMS' = 0 )
 We would like the HMM to prefer to alternate between GMS and non-GMS student talks. So let's give
 the HMM a 7/8th chance of switching between types:
 
+```
 #                       prob = 7/8
 #                      <----------
 # GMS student talks                    non-GMS student talks
 #                      ----------->
 #                       prob = 5/8
+```
 
+Like this:
 ```R
 transitions = matrix(
 	nrow = 2, ncol = 2, dimnames = list(
