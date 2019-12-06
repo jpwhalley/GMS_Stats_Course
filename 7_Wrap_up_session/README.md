@@ -114,8 +114,36 @@ We're set! Let's run it:
 	print( schedule )
 ```
 
-Finally let's print the full schedule:
+Finally, let's add times and so on: let's print the full schedule:
 ```R
-	print( formatSchedule( schedule ))
+# Helper function to format a schedule with times
+formatSchedule <- function(
+	schedule,
+	startTimeInMinutesPastMidnight = (12*60) + 20,
+	talkDurationInMinutes = 5
+) {
+	# Function to print a talk start and end time
+	formatTime <- function( start.time, duration = 5 ) {
+		end.time = start.time + duration
+		start.hour = floor( start.time / 60 )
+		end.hour = floor( end.time / 60 )
+
+		start.minute = start.time - 60 * start.hour
+		end.minute = end.time - 60 * end.hour
+
+		sprintf( "%.2d:%.2d - %.2d:%.2d", start.hour, start.minute, end.hour, end.minute )
+	}
+	times = seq( from = startTimeInMinutesPastMidnight, length = nrow( schedule ), by = talkDurationInMinutes + 2 )
+	schedule$time = formatTime( times )
+	schedule = rbind(
+		data.frame( who = "-", title = "Lunch / setup", type = "-", time = "12:00 - 12:20" ),
+		schedule,
+		data.frame( who = "-", title = "Wrap-up", type = "-", time = "13:15 - 13:30" )
+	)
+	return( schedule )
+}
+
+# Print it
+print( formatSchedule( schedule ))
 ```
 
