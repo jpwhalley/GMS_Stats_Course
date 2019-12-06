@@ -38,9 +38,14 @@ The course contains a mixture of frontal lectures and practicals. During the lec
 FILES:
 Introduction to Bayesian statitsics.pptx: the lecture will start with this power point which will be completed by the students during the course.
 
+Introduction to Bayesian statistics_teacher.pdf: completed pdf (teacher version) of Introduction to Bayesian statitsics.pptx.
+
 practical_nb.1.pptx: this power point will be used to introduce practical 1 (in R)
 
 practical_nb.1.R: the R file corresponding to practical 1
+
+practical_nb.1_answers.R: the R file corresponding to practical 1 with answers
+
 
 ASSESSMENT:
 There is no formal assessment for this course. However, an active participation is desired. 

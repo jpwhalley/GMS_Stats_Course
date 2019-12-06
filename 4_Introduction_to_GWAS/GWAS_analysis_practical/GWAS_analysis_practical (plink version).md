@@ -1,8 +1,12 @@
 # GWAS Analysis Practical
-# Wellcome Centre for Human Genetics - GMS DPhil Program - November 2019
+## Wellcome Centre for Human Genetics GMS DPhil Program
+
+November 2019
+
+Authors: Luke Jostins, Gavin Band
 
 ##  Introduction
-The series of practicals today will introduce you to analyzing Genome Wide Association Study (GWAS) datasets using a program called PLINK, which is a freely available GWAS analysis toolkit. PLINK has many functions including those related to data organization, formatting, quality control, association testing, population stratification and much more. Details about PLINK and its documentation are available at the reference section at the end of these practicals.
+This practical will introduce you to analyzing Genome Wide Association Study (GWAS) datasets using a program called PLINK, which is a freely available GWAS analysis toolkit. PLINK has many functions including those related to data organization, formatting, quality control, association testing, population stratification and much more. Details about PLINK and its documentation are available at the reference section at the end of these practicals.
 
 We will use the chr19-example.vcf.gz/.samples files in the `4_Introduction_to_GWAS/GWAS_practical/` folder. These files have been simulated and do not represent any real data, but instead serve to illustrate important points in working with GWAS data. We will use PLINK commands in the terminal to perform analyses. We can use the text editor, spreadsheet and R to help interpret results. 
 
@@ -30,24 +34,26 @@ To get set up, you need
 open a terminal and navigate to your workspace for the practical.  You can either work on the WHG compute cluster or, if you are happy to do your own setup, on your own laptop.
 
 ```sh
-	cd /path/to/working/folder/
+$ cd /path/to/working/folder/
 ```
 
+If you are using one of the workshop training logins, the path will be `/well/workshop/workshop<N>` if you are logged in as `workshop<N>`.
+
 The practical dataset is available in the `4_Introduction_to_GWAS/GWAS_practical` folder in the github site: https://github.com/jpwhalley/GMS_Stats_Course/tree/master/4_Introduction_to_GWAS/GWAS_analysis_practical.
-You'll need everything including the `.vcf` and `.samples` files, and the `scripts/` and `resources/` folders.
+You'll need to download everything, including the `.vcf` and `.samples` files, and the `scripts/` and `resources/` folders.
 
 Second, let's get the plink program we need.  Navigate to `https://www.cog-genomics.org/plink/1.9/` and download the appropriate version.  Then move the plink executable into the top-level folder:
 ```sh
 $ mv plink_[version]/plink ./
 ```
-On the WHG cluster you can instead copy it from `/apps/well` (which contains many useful applications compliled for the cluster):
+If you are using the WHG cluster you should instead be able to copy it from `/apps/well` (which contains many useful applications compliled for the cluster):
 ```sh
-cp /apps/well/plink/1.90b3/plink ./
+$ cp /apps/well/plink/1.90b3/plink ./
 ```
 
-If all is well you should be able to run plink like this:
+If all is well you should now be able to run plink like this:
 ```sh
-./plink –-version
+$ ./plink –-version
 ```
 
 Plink will tell you its version, and when it was last updated.  
@@ -82,13 +88,19 @@ If we look in the assoc file we will see that this SNP, rs8135996, is associated
 *Q*. And what does the odds ratio mean anyway?  If this is a disease trait, is it good news to have the 'G' allele?  Or to have the 'A' allele?  And how bad is it to have the risk allele?
 *Advanced Question*.  What does `ADD` mean in the output?  Can you figure out how to run a non-additive test?  Which mode of inheritance has the greatest evidence?
 
-## Forest plotting
+## Forest plotting
 If you followed the Statistical modelling module earlier, we argued that what you want is to summarise the likelihood by its maximum (here the log odds ratio) and its standard error - thus approximating the likelihood by a gaussian function.  How can you get this out of plink's output? Can you figure this out from the [documentation for --logistic](https://www.cog-genomics.org/plink/1.9/assoc#linear)?
 
 Here's my take: using `--logistic beta` makes plink output the regression estimate (log odds ratio) instead of the odds ratio.  Plink also outputs what turns out to be a Wald test P-value.  (See [the notes](https://github.com/jpwhalley/GMS_Stats_Course/blob/master/2_Statistical_Modelling/1_Introduction/notes/computing_pvalues.md) from Statistical Modelling I for a definition).
 
-If you know this, you can use it to work out the standard error - for example in R code:
+If you know this, you can use it to work out the standard error.  For example:
+
+```sh
+$ ./plink --vcf snp-example.vcf --logistic beta --pheno snp-example.samples --allow-no-sex
+```
+And then using R:
 ```R
+# in R
 X = read.table( "plink.assoc.logistic", hea=T, as.is=T )
 beta = X$BETA  # use log(X$OR) if you ran without the `beta` modifier
 P = X$P
@@ -119,37 +131,47 @@ plot.betas( beta, se )
 ```
 Congratulations!  This is your first GWAS forest plot (albeit with only one row).
 
-()*Note*: I think the `--ci` option also makes plink output the standard errors.)
+(*Note*: I think adding the `--ci 0.95` option to the plink command line also makes plink output the standard errors.)
 
-## 
+## Renaming output files
 
 The final step in this introduction is to learn to rename PLINK’s output files, since we’ll be generating lots of them in the practicals.
 
 ```sh
-$ ./plink --vcf snp-example.vcf --logistic beta --pheno snp-example.samples --allow-no-sex --out getting-started
+$ ./plink \
+--vcf snp-example.vcf \
+--logistic beta \
+--pheno snp-example.samples \
+--allow-no-sex \
+--out getting-started
 ```
-Now the output files will be named getting-started.log and getting-started.assoc.logistic. This is the basic pattern to working with PLINK: specifying input files and analyses, along with an output name to save results.
+(The backslashes here are shell line continuation characters - they let us put the command on multiple lines).  Now the output files will be named getting-started.log and getting-started.assoc.logistic. This is the basic pattern to working with PLINK: specifying input files and analyses, along with an output name to save results.
 
 ## Reading files in a different format
 When we analyze real data, we won’t always have the files in VCF. Instead, a variety of other formats are used - in particular, binary formats are often used for efficiency reasons.
 PLINK can read in many of these file formats.
 
-In our example we gave plink two files, snp-example.vcf and snp-example.samples. If you look at the snp-example.samples in a text editor, you will see a list of sample names (“sample1”, “sample2”, etc), followed by a few numbers. The first number is the case-control status of the sample (1 means unaffected, 2 means affected), the second is the the sex of the sample (1 means male, 2 means female). The other file, snp-example.vcf, is in the VCF format that we saw in the Public Resources lecture, and contains the genotypes for each sample. You can look at the file in a text editor, but you might find it hard to read. 
+In our example we gave plink two files, snp-example.vcf and snp-example.samples. If you look at the snp-example.samples in a text editor, you will see a list of sample names (“sample1”, “sample2”, etc), followed by a few numbers. The first number is the case-control status of the sample (1 means unaffected, 2 means affected), the second is the the sex of the sample (1 means male, 2 means female). The other file, snp-example.vcf, is in the famous [VCF format](https://samtools.github.io/hts-specs/VCFv4.2.pdf) that is widely used for sharing genetics data, and contains the genotypes for each sample. You can look at the file in a text editor, though you might find it hard to read.
 
 We can use PLINK to convert these files to plink's native format.  This is a binary format called BED:
 
 ```sh
-$ ./plink --make-bed --vcf snp-example.vcf --pheno snp-example.samples --update-sex snp-example.samples 2 --out snp-example-recode
+$ ./plink \
+--make-bed \
+--vcf snp-example.vcf \
+--pheno snp-example.samples \
+--update-sex snp-example.samples 2 \
+--out snp-example-recode
 ```
 
-Here we are using the command “--recode" to rewrite the data into a new format. `--vcf snp-example.vcf` tells it to read the genotypes from the VCF file, `--pheno snp-example.samples` tells Plink to take the phenotypes from the sample file, and `--update-sex snp-example.sex 2` tells it to take gender information from the second column of the sample. Finally, `--out snp-example-recode` tells PLINK the prefix to use when writing the new files.
+Here we are using the command `--recode` to rewrite the data into a new format. `--vcf snp-example.vcf` tells it to read the genotypes from the VCF file, `--pheno snp-example.samples` tells Plink to take the phenotypes from the sample file, and `--update-sex snp-example.sex 2` tells it to take gender information from the second column of the sample. Finally, `--out snp-example-recode` tells PLINK the prefix to use when writing the new files.
 You can see that we have now made `snp-example-recode.bed`, `snp-example-recode.fam`, and `snp-example-record.bim` files that are in the binary format PLINK expects.  
 
 Unlike the human-readable text .vcf file we used before, these data are in “binary ped” format (.bed). This format is a compressed format which saves space and speeds up analysis. Information on samples can be found in the .fam file and information on SNPs in the .bim file. 
 
 *Q*. Look at the documentation for these files.  Check you understand what is in each one.
 
-1a:  Quality Control Practical
+##  Quality Control Practical
 We will now work with a set of data files containing many SNPs from chromosome 19 genotyped on controls and cases.  Data from a GWAS would contain SNPs at this density across the entire genome, but we will focus on just one chromosome to make the exercises more tractable.
 
 The key files are `chr19-example.vcf.gz` and `chr19-example.samples`.
@@ -162,32 +184,37 @@ You can download it manually or, on the cluster, the command:
 ```sh
 $ wget https:www.well.ox.ac.uk/~gav/resources/chr19-example.vcf.gz
 ```
-should download it.
+will download it.
 
 As we saw above, we can convert these to files PLINK can read:
 ```sh
-$ ./plink --make-bed --vcf chr19-example.vcf.gz --pheno chr19-example.samples --update-sex chr19-example.samples  2 --out chr19-example --keep-allele-order
+$ ./plink --make-bed \
+--vcf chr19-example.vcf.gz \
+--pheno chr19-example.samples \
+--update-sex chr19-example.samples 2 \
+--out chr19-example \
+--keep-allele-order
 ```
-Like the test files above, these files contain information about the samples and SNPs, as well as the genotypes for each of the samples at each of the SNPs. We've used the --keep-allele-order option here to make sure plink preserves the two alleles at each SNP in the same order as in the VCF file (important if we want to keep track of effect direction).
+Like the test files above, these files contain information about the samples and SNPs, as well as the genotypes for each of the samples at each of the SNPs. We've used the `--keep-allele-order` option here to make sure plink preserves the two alleles at each SNP in the same order as in the VCF file (important if we want to keep track of effect direction).
 
 We can load data in the binary plink format using the --bfile option. For instance, to calculate allele frequencies we use:
 
 ```sh
 $ ./plink --bfile chr19-example --freq
 ```
-Q. How many SNPs and samples are in this dataset?
+*Q.* How many SNPs and samples are in this dataset?
 
-Note: Many other formats are in use for genetic data, including 'GEN' format, ['BGEN' format](http://www.bgenformat.org), and BCF (binary VCF) format. 
+Note: Many other formats are in use for genetic data, including 'GEN' format, ['BGEN' format](http://www.bgenformat.org), and BCF (binary VCF) format.  (Learning how to deal with these is part of the job description.)
 
 There are many different QC metrics that we can calculate for our dataset. These metrics can tell us about the quality of loci (i.e. SNPs), and of samples. For instance, we can calculation information about missingness:
 
 ```sh
-./plink --bfile chr19-example --missing --out miss-info
+$ ./plink --bfile chr19-example --missing --out miss-info
 ```
 
 This will produce a .imiss file with information about individuals and .lmiss with information about loci (SNPs). You can load this output into a spreadsheet program to look at it in more detail: In the directory browser right-click miss-info.lmiss file.  Select open in Libreoffice Calc or choose other application to select Libreoffice Calc.  An options window will open and in the Separator options you need to ensure that only 'separated by space' and the 'merge delimiters' boxes are checked before proceeding!
 
-Q. Which SNP has the highest missing rate?
+*Q.* Which SNP has the highest missing rate?
 
 Another QC metric is sample heterozygosity:
 
@@ -198,7 +225,8 @@ We can use R to visualize these results. Launch R as in previous practicals. Com
 
 ```R
 # In R:
-setwd('<path to practical folder>')
+# NB. Make sure you are in the same folder as your practical!
+# Use setwd() in R or the Session->Set Working Directory option in RStudio.
 HetData <- read.table( "het-info.het", h=T )
 hist( HetData$F, breaks=100 )
 ```
@@ -233,11 +261,18 @@ write.table( qcFails, quote=F, row.names=F, col.names=F, file="qcFails.txt" )
 We can combine this list with other quality control metrics (described in the lectures) to create a clean dataset (note that although we need to break long commands in this document over two lines, all options should be typed on one continuous line in the terminal without breaks):
 
 ```sh
-$ ./plink --bfile chr19-example --remove qcFails.txt --hwe 1e-4 include-nonctrl --geno 0.01 --maf 0.01 --make-bed --out chr19-clean --keep-allele-order
+$ ./plink \
+--bfile chr19-example \
+--remove qcFails.txt \
+--hwe 1e-4 include-nonctrl \
+--geno 0.01 \
+--maf 0.01 \
+--make-bed \
+--out chr19-clean \
+--keep-allele-order
 ```
 
-Q. What filters have we applied here? (the PLINK website can help explain these options)
-
+*Q.* What filters have we applied here? (the PLINK website can help explain these options)
 
 # Association Practical
 Now we will test for association between the SNPs in our dataset and malaria. Basic association tests can be done as follows:
@@ -247,8 +282,7 @@ $ ./plink --bfile chr19-example --logistic beta --out basic-test --keep-allele-o
 ```
 
 Load these results in the spreadsheet program to investigate them further.
-Q. How many SNPs are associated? Is this what you expect?
-Q. Why?  Why not?
+*Q*. How many SNPs are associated? Is this what you expect? Why?
 
 We can again use R to visualize these data.  First make sure you are in the correct practical folder:
 
@@ -307,9 +341,9 @@ the expected distribution if drawn from a uniform distribution.
 
 The expected median p-value is 0.5. The diagonal line shows where the points should fall if the null hypothesis that there are no association signals were true at most SNPs.
 
-Q. Given this information, what can you infer about our current association analysis?
+*Q*. Given this information, what can you infer about our current association analysis?
 
-Q. Using the PLINK website, can you identify how to run more general tests of association (beyond the basic test we’ve done already)?
+*Q*. Using the PLINK website, can you identify how to run more general tests of association (beyond the basic test we’ve done already)?
 
 
 ## Population Structure Practical
@@ -318,15 +352,21 @@ We have seen how applying appropriate quality control filters to our data elimin
 The file `chr19-example.pca` contains the principal components for this dataset (calculated in the previous practical), and the following command will carry out an association analysis controlling for these:
 
 ```sh
-$ ./plink --bfile chr19-clean --logistic beta --covar chr19-example.pca --out pccorrected-test --keep-allele-order --ci 0.95
+$ ./plink \
+--bfile chr19-clean \
+--logistic beta \
+--ci 0.95 \
+--covar chr19-example.pca \
+--out pccorrected-test \
+--keep-allele-order
 ```
 
 
 We have now produced an analysis corrected for population structure.   Congratulations!
 
-Note: On Thursday we will use the output from the above in a meta-analysis with data from other studies of the same phenotype.  To help with this, we've used a couple of options above that will make the output consistent across studies.  Firstly, as above we've used the --keep-allele-order option to make plink output odds ratios for the non-reference allele.  (By default it will output test statistics for the minor, i.e. less common allele, but that's problematic as it might vary between studies.)  We've also used the --ci option to tell plink to output a standard error along with the odds ratio.  We'll use these standard errors in the meta-analysis practical tomorrow. 
+*Note*: We've used a couple of options above that will make the output consistent across studies.  Firstly, as above we've used the --keep-allele-order option to make plink output odds ratios for the non-reference allele.  (By default it will output test statistics for the minor, i.e. less common allele, but that's problematic as it might vary between studies.)  We've also used the `--ci` option to tell plink to output a standard error along with the odds ratio.  These options are particularly useful if you are using the output in a meta-analysis with other studies.
 
-For now, let's use the text editor, spreadsheet and R (as in yesterday’s practicals) to examine these results.
+For now, let's use the text editor, spreadsheet and R (as in the sections above) to examine these results.
 
 Note that the output file “pccorrected-test.assoc.logistic” contains information for the SNPs and also all the principal components. Make sure you extract just the SNP lines (those that have “ADD” in the TEST column):
 
@@ -336,18 +376,19 @@ data<-read.table( "pccorrected-test.assoc.logistic", header = T )
 data <- data[data$TEST == "ADD",]
 ```
 
-Q. Has stratifying by disease group corrected our inflation?
+*Q.* Has stratifying by disease group corrected our inflation?  (Re-make the QQ-plot).
 
-Q. Are there any disease associations in this dataset?
+*Q.* Are there any disease associations in this dataset?
 
-Q. How are the QC statistics for any associated SNPs? Do you believe these associations?
+*Q.* How are the QC statistics for any associated SNPs? Do you believe these associations?
 
-Q. Can you find out anything about the function of these associated SNPs, using the tools you learned about in the Public Resources practical?
+*Q.* Can you find out anything about the function of these associated SNPs?  For example using online tools such as [UCSC Genome Browser](https://genome.ucsc.edu/cgi-bin/hgGateway).  (Note we are using GRCh37/hg19 coordinates.)
 
-Q. What could explain differences in association p-values in the different analyses we’ve done?
+*Q.* What could explain differences in association p-values in the different analyses we’ve done?
 
-Q. Produce Q-Q plots, genome-wide p-value plots and a summary of your results.
+*Q.* Produce Q-Q plots, genome-wide p-value plots and a summary of your results.
 
+**When you've reached this part of the practical, please email your qq plot to me (Gavin).**
 
 ## Making a regional association plot
 
@@ -364,11 +405,11 @@ To make a hitplot we need to load data on all of these things.  To begin, make s
 
 ```R
 # In R:
-    data<-read.table( "pccorrected-test.assoc.logistic", header = T )
-    data <- data[data$TEST == "ADD",]
+data <- read.table( "pccorrected-test.assoc.logistic", header = T )
+data <- data[data$TEST == "ADD",]
 ```
 
-4.1 Loading the data
+### Loading the data
 
 We’ll start by getting plink to compute LD between the most-associated SNP in each of the strongest three association peaks and the other SNPs in the dataset.  First let’s identify what the top SNPs in each region are:
 
@@ -383,15 +424,25 @@ data[ which( data$BP > 4.5E7 )[1],]
 Note down the rsids (in the ‘SNP’ column) of the three SNPs.  As a sanity check, all three should have a P-value less than 10-6.  In this practical we’ll concentrate on the third SNP, which has the lowest P-value, but a question will ask you to repeat this for the other two SNPs.  Now in the terminal let’s use plink to compute LD:
 
 ```sh
-$ ./plink --bfile chr19-clean --keep resources/controls.txt --r2 dprime --ld-window 10000 --ld-window-kb 1000000 --ld-window-r2 0.05 --ld-snps rs57558361 rs376047 rs112820994
+$ ./plink \
+--bfile chr19-clean \
+--keep resources/controls.txt \
+--r2 dprime \
+--ld-window 10000 \
+--ld-window-kb 1000000 \
+--ld-window-r2 0.05 \
+--ld-snps rs57558361 rs376047 rs112820994 \
+--threads 1
 ```
+
+(We've added `--threads 1` to this command to make sure plink doesn't use lots of threads.  This doesn't matter on a personal laptop, but we don't want plink to use up all the resources on the shared cluster node.)
 
 This command says to compute pairwise r2 and D’ statistics between the three lead SNPs and all other SNPs within a window around them.  Only SNPs with r2>0.05 will appear in the output file.  (We’ve restricted the computation to control samples.  If these are population controls then we are estimating LD in the population).  Let’s load the result into our R session:
 
 ```R
 # In R:
 ld <- read.table( "plink.ld", hea=T, as.is=T )
-View(ld)
+head(ld)
 ```
 
 Have a look at the results.  The last two columns contain estimates of r2 and D' between the SNPs listed in SNP_A and SNP_B columns.  For plotting, it's simplest to bin those values:
@@ -399,14 +450,14 @@ Have a look at the results.  The last two columns contain estimates of r2 and D'
 ```R
 # In R:
 ld$R2_bin <- cut( ld$R2, breaks = seq( 0, 1, by = 0.1 ))
-View(ld)
+head(ld)
 ```
 
 Now let's load the other data we need.  First, we'll load information on genes from the file `resources/refGene_chr19.txt` (which comes from the UCSC Genome browser):
 
 ```R
 genes <- read.table( "resources/refGene_chr19.txt.gz", header=T, as.is=T )
-View(genes)
+head(genes)
 ```
 
 This file is a bit complex.  Among other things it contains gene names (in the name2 column), transcription start and end points (txStart, txEnd), and the positions of exons (exonStarts, exonEnds).  One interesting thing you might notice is that some genes (e.g. FUT2) have several transcripts.  That's useful information but is a bit too much detail for our plot, so let's just keep the longest transcript of each gene:
@@ -426,7 +477,7 @@ Next we'll load recombination rate estimates from the HapMap project:
 
 ```R
 genetic_map <- read.table( "resources/genetic_map_chr19_combined_b37.txt.gz", hea=T, as.is=T )
-View( genetic_map )
+head( genetic_map )
 ```
 
 We're nearly ready to plot!  We'll make a hit plot near the most-associated SNP (rs112820994). Let's find a region around it:
@@ -504,17 +555,23 @@ We have wrapped up the above code - with a few more cosmetic tweaks - into a fun
 ```R
 source( 'scripts/hitplot.R' )
 hitplot( 'rs112820994', data, genes, ld, margin = 200000 )
+
+pdf( file = "rs112820994_hitplot.pdf", width = 8, height = 6 )
+hitplot( 'rs112820994', data, genes, ld, margin = 200000 )
+dev.off()
 ```
 
-Q. What gene is rs112820994 in?  Is it in an exon?  Are other top SNPs in the region also in genes?   (You may need to play around with the margin argument to zoom in or out of the plot.  You can cross-check using the genome browsers).
+**Please email your plot to me (Gavin) when you've reached this part of the practical.**.
 
-Q. Are there any obvious features near the boundaries of the region of associated SNPs?
+*Q.* What gene is rs112820994 in?  Is it in an exon?  Are other top SNPs in the region also in genes?   (You may need to play around with the margin argument to zoom in or out of the plot.  You can cross-check using genome browsers such as the [UCSC Genome Browser](https://genome.ucsc.edu/cgi-bin/hgGateway) - note that we are using GRCh37/hg19 coordinates).
 
-Q. Make a similar plot for each of the other regions we computed LD for above.  Do they look similar?  Is there anything odd about them?
+*Q.* Are there any obvious features near the boundaries of the region of associated SNPs?
 
-Q. Having looked at the variants in the genome browser – what other genomic features would you add to the hitplot if you had time?  How would you add these?
+*Q.* Make a similar plot for each of the other regions we computed LD for above.  Do they look similar?  Is there anything odd about them?
 
-Q. (Challenge question – only try this if you've got time). In the sample folder there's a file called "resources/snp138_chr19.txt.gz" containing information from dbSNP on variants in each region.  Load this in using read.table(). (You'll need to add the sep='\t' option to make it look for tab separators - type ?read.table for help.)  The column called 'func' lists putative functional consequences of each variant.  The challenge is to create a version of the hit plot that overplots different shapes to show the functional annotation.
+*Q.* Having looked at the variants in the genome browser – what other genomic features would you add to the hitplot if you had time?  How would you add these?
+
+*Q.* (Challenge question – only try this if you've got time). In the sample folder there's a file called "resources/snp138_chr19.txt.gz" containing information from dbSNP on variants in each region.  Load this in using read.table(). (You'll need to add the sep='\t' option to make it look for tab separators - type ?read.table for help.)  The column called 'func' lists putative functional consequences of each variant.  The challenge is to create a version of the hit plot that overplots different shapes to show the functional annotation.
 
 Hints:
 1. The 'func' column in snp138 contains many categories and you'll first need to simplify it for plotting.  One way is to take the most 'severe' category for each SNP.  A rough list of useful categories might be: missense, nonsense, stop-gain, stop-loss, splice-3, splice-5, untranslated-3, untranslated-5, intron.  E.g. the following code shows how to make a simpler variable func2:
@@ -523,8 +580,8 @@ Hints:
 snp138$func2 = NA
 snp138$func2[grep('intron',snp138$func)] = 'intron'
 snp138$func2[grep('splice-5',snp138$func)] = 'splice-5'
-```
 # …etc.
+```
 
 To cut down copy-pasting, you may want to turn the above into a loop.
 
@@ -532,7 +589,7 @@ To cut down copy-pasting, you may want to turn the above into a loop.
 
 3. The points() command can be used to overplot points on an existing plot.  Use the pch argument to specify shape.  (Only plot points that have func != 'none').
 
-4. pch takes argument that is a positive integer in the range 1-20, say (google for 'R shapes' to see a table of shapes).  One way to turn categories into integers for pch is to first convert them to a factor, e.g. 
+4. pch takes an argument that is a positive integer in the range 1-20, say (google for 'R shapes' to see a table of shapes).  One way to turn categories into integers for pch is to first convert them to a factor, e.g. 
 ```R
 data$func2 = factor(data$func2, levels = c( 'missense', 'nonsense', 'stop-gain', 'stop-loss', 'splice-3', 'splice-5', 'untranslated-3', 'untranslated-5', 'intron' )
 table( as.integer(data$func2) )
@@ -542,7 +599,7 @@ table( as.integer(data$func2) )
 
 ## Reference Information
 
-You can download PLINK, and find much more information at the website:
+You can download PLINK, and find more information at the website:
 
 https://www.cog-genomics.org/plink2
 
@@ -551,8 +608,6 @@ There is detailed documentation about all the options available, file formats an
 A detailed tutorial (similar to work we have done here) is available at:
 
 http://pngu.mgh.harvard.edu/~purcell/plink/tutorial.shtml
-
-
 
 
 
