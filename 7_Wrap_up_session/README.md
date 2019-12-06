@@ -56,7 +56,7 @@ transitions["GMS",] = c( 1/8, 7/8 )
 transitions["non-GMS",] = c( 7/8, 1/8 )
 ```
 
-Here is some code to run the HMM:
+Here is some code to run the HMM.  I like to try to collect related code into objects - I'll use an R list to collect the various functions.  (A better programmer might figure out how to use [R S3 or S4 classes](http://adv-r.had.co.nz/OO-essentials.html) here.)
 ```R
 hmm = list(
 
@@ -76,7 +76,7 @@ hmm = list(
 		} else {
 			return(NULL)
 		}
-	}
+	},
 
 	# initialise(): Pick an initial talk
 	initialise = function( talks, initialProbs ) {
@@ -89,9 +89,6 @@ hmm = list(
 
 	# step(): Pick the next talk, given last currently scheduled talk type.
 	step = function( talks, schedule, transitions ) {
-
-		#
-	
 		currentTalk = schedule[nrow( schedule ), ]
 		# transition to next type of talk
 		nextTalkType = hmm$sample( c( "GMS", "non-GMS" ), probabilities = transitions[currentTalk$type,] )
