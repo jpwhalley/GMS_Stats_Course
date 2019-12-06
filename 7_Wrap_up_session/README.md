@@ -56,7 +56,7 @@ transitions["GMS",] = c( 1/8, 7/8 )
 transitions["non-GMS",] = c( 7/8, 1/8 )
 ```
 
-Here is some code to run the HMM.  I like to try to collect related code into objects - I'll use an R list to collect the various functions.  (A better programmer might figure out how to use [R S3 or S4 classes](http://adv-r.had.co.nz/OO-essentials.html) here.)
+Here is some code to run the HMM.  I like to try to collect related code into objects - I'll use an R list to collect the various functions.  (A better programmer might refer to the [R OO field guide](http://adv-r.had.co.nz/OO-essentials.html) here.)
 ```R
 hmm = list(
 
