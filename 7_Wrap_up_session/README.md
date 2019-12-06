@@ -61,14 +61,14 @@ Here is some code to run the HMM.  I like to try to collect related code into ob
 hmm = list(
 
 	# sample(): a helper function to pick one item from a set of possibilities
-	sample <- function( from, probabilities ) {
+	sample = function( from, probabilities ) {
 		u = runif(1)
 		return( from[min(which( cumsum(probabilities) >= u ))] )
 	},
 
 	# emit(): pick a talk uniformly among remaining talks with the given type
 	# if there's no such talk left we return an 'empty' talk (i.e. NULL)
-	emit <- function( talks, schedule, type ) {
+	emit = function( talks, schedule, type ) {
 		w = which( talks$type == type & !talks$who %in% schedule$who )
 		if( length(w) > 0 ) {
 			pick = hmm$sample( w, probabilities = rep( 1/length(w), length(w) ))
