@@ -116,7 +116,6 @@ We're set! Let's run it:
 
 Finally, let's add times and so on: let's print the full schedule:
 ```R
-# Helper function to format a schedule with times
 formatSchedule <- function(
 	schedule,
 	startTimeInMinutesPastMidnight = (12*60) + 20,
@@ -143,7 +142,6 @@ formatSchedule <- function(
 	return( schedule )
 }
 
-# Print it
 print( formatSchedule( schedule ))
 ```
 
