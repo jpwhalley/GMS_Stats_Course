@@ -108,13 +108,10 @@ hmm = list(
 We're set! Let's run it:
 ```R
 	schedule = hmm$initialise( talks, initialProbs ); print( schedule ) ;
-	schedule = hmm$step( talks, schedule, transitions ); print( schedule ) ;
-	schedule = hmm$step( talks, schedule, transitions ); print( schedule ) ;
-	schedule = hmm$step( talks, schedule, transitions ); print( schedule ) ;
-	schedule = hmm$step( talks, schedule, transitions ); print( schedule ) ;
-	schedule = hmm$step( talks, schedule, transitions ); print( schedule ) ;
-	schedule = hmm$step( talks, schedule, transitions ); print( schedule ) ;
-	schedule = hmm$step( talks, schedule, transitions ); print( schedule ) ;
+	while( nrow( schedule ) < nrow( talks )) {
+		schedule = hmm$step( talks, schedule, transitions ); print( schedule ) ;
+	}
+	print( schedule )
 ```
 
 Finally let's print the full schedule:
