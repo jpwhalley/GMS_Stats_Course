@@ -41,7 +41,7 @@ the HMM a 7/8th chance of switching between types:
 #                      <----------
 # GMS student talks                    non-GMS student talks
 #                      ----------->
-#                       prob = 5/8
+#                       prob = 7/8
 ```
 
 Like this:
