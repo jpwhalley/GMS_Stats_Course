@@ -20,8 +20,8 @@ BiocManager::install("XGR", dependencies=T)
 
 Data
 ----
-* Genetic distances for block 3
-* Microarray data for block 3
+* Genetic distances for block 3 (contact jpwhalley if you want to download it)
+* Microarray data for block 3 (contact jpwhalley if you want to download it)
 
 Blocks
 --------
