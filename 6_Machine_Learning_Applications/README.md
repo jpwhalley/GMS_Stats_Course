@@ -10,8 +10,6 @@ The tutorials will run in Google Colab.  Only requirements are a browser and a G
 Timetable
 ---------
 
-Tue 3/12:
-
 | Day      | Time        | Who              | What                                 |
 | -------- | ----------- | ---------------- | ------------------------------------ |
 | Tue 3/12 | 9:30 - 10   | Gerton Lunter    | Welcome                              |
