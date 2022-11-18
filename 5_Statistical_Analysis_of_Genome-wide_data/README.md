@@ -14,5 +14,5 @@ Day 1: Shrinkage of maximum likelihood estimates,
        Chip heritability
        
 Day 2:  Genetic prediction of phenotypes, 
-        False Discovery Rates
+        False Discovery Rates,
         Estimation and significance testing of specific genetic variants' effects on phenotypes
